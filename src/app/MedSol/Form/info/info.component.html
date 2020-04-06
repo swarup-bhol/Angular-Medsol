@@ -1,0 +1,77 @@
+<div style="background-color: #fbfbfb; height: 100%;">
+    <div class="headerProfile">
+        <h2>Create Your Profile</h2>
+    </div>
+    <div style="padding: 20px; margin-left: 7%;">
+        <div>
+            <div class="form">
+                <form [formGroup]="infoForm" (ngSubmit)="onSubmit()">
+                    <h1>1. About You</h1>
+                    <div class="row">
+                        <div class="form-group col-12 col-sm-6 col-md-6">
+                            <div class="col-12 col-sm-6 col-md-6"><label>I am a..</label></div>
+                            <div class="col-12 col-sm-6 col-md-6">
+                                <select class="form-control" formControlName="profession" #prof
+                                    (change)='onProfSelect(prof.value)'>
+                                    <option *ngFor="let pro of professions" [value]="pro.id">{{pro.name}}</option>
+                                </select>
+                                <div *ngIf="f.profession.invalid && (f.profession.dirty || f.profession.touched || isSubmitted)"
+                                    class="invalid-feedback d-block">
+                                    <div *ngIf="f.profession.errors.required">Profession is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-12 col-sm-6 col-md-6">
+                            <div class="col-12 col-sm-6 col-md-6"><label>Your current grade
+                                </label></div>
+                            <div class="col-12 col-sm-6 col-md-6">
+                                <select class="form-control" formControlName="grade">
+                                    <option *ngFor="let grade of gradeList">{{grade.name}}</option>
+                                </select>
+                                <div *ngIf="f.grade.invalid && (f.grade.dirty || f.grade.touched || isSubmitted)"
+                                    class="invalid-feedback d-block">
+                                    <div *ngIf="f.grade.errors.required">Grade is required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h1 *ngIf="checkProf">2. Where you work</h1>
+                    <h1 *ngIf="!checkProf">2. Where you study</h1>
+                    <div class="row">
+                        <div class="form-group col-12 col-sm-6 col-md-6">
+                            <div class="col-12 col-sm-6 col-md-6"> <label *ngIf="checkProf">My primary place of work is…</label><label *ngIf="!checkProf">My
+                                    primary place of study is…</label></div>
+                            <div class="col-12 col-sm-6 col-md-6"> <input type="text" class="form-control" formControlName="institute"
+                                    [ngClass]="{ 'is-invalid': f.institute.invalid && (f.institute.dirty || f.institute.touched || isSubmitted) }">
+                                <div *ngIf="f.institute.invalid && (f.institute.dirty || f.institute.touched || isSubmitted)"
+                                    class="invalid-feedback d-block">
+                                    <div *ngIf="f.institute.errors.required">Institute is required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h1>3. Specialty</h1>
+                    <div class="row">
+                        <div class="form-group col-12 col-sm-6 col-md-6">
+                            <div class="col-12 col-sm-6 col-md-6"> <label>My primary specialty is…</label></div>
+                            <div class="col-12 col-sm-6 col-md-6"> <select class="form-control" formControlName="specialty" #specialis
+                                (change)='onSpecSelected(specialis.value)'>
+                                    <option *ngFor="let spec of specializations" [value]="spec.id"
+                                    >{{spec.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-12 col-sm-6 col-md-6">
+                            <div class="col-12 col-sm-6 col-md-6"> <label>Subspecialties</label></div>
+                            <div class="col-12 col-sm-6 col-md-6"> <select class="form-control" formControlName="subspecialties">
+                                    <option *ngFor="let subSpe of subSpecList">{{subSpe.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="text-align: center;"><button class="btn btn-primary">Continue</button></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

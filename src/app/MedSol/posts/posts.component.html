@@ -1,0 +1,25 @@
+<mat-error style="float: right; cursor: pointer;" (click)="closeDialog()">X</mat-error>
+<form [formGroup]="uploadPost" (ngSubmit)="submit()">
+    <div class="mycenter">
+        <input mat-input type="text" placeholder="Write Something Here .." formControlName="content"
+            [ngClass]="{ 'is-invalid': f.content.invalid && (f.content.dirty || f.content.touched || isSubmitted) }">
+    </div>
+    <mat-error *ngIf="f.content.invalid && (f.content.dirty || f.content.touched || isSubmitted)" class="invalid-feedback d-block">
+        <mat-error *ngIf="f.content.errors.required"> Content is <strong>required</strong></mat-error>
+    </mat-error>
+    <div>
+        <div class="row imgBtn" (click)="fileInput.click()">
+            <div class="col-2">
+                <img src="./../../../assets/default-image.png" height="15px" width="20px">
+
+            </div>
+            <div class="col-4">Image/Video</div>
+        </div>
+        <input style="display: none" type="file" (change)="onFileChanged($event)" #fileInput>
+        <div *ngIf="imageURL && imageURL !== ''" style="margin-top: 2%; margin-left: 2%;">
+            <img [src]="imageURL" height="60px" width="60px"><span class="delete-entry" style="cursor: pointer;"
+                (click)="deleteImage()">x</span>
+        </div>
+        <div style="float: right;"><button mat-raised-button color="primary">Post</button></div>
+    </div>
+</form>

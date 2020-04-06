@@ -1,0 +1,38 @@
+<div style="margin-top: 6%;">
+    <div class="mat-elevation-z8">
+        <div class="editForm">
+            <form class="mat-form" [formGroup]="editForm">
+                <mat-form-field class="mat-full-width">
+                    <mat-label>Full Name</mat-label>
+                    <input type="text" matInput formControlName="name">
+                    <mat-error *ngIf="false">
+                        Full Name is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="mat-full-width">
+                    <mat-label>Email</mat-label>
+                    <input type="email" matInput formControlName="email">
+                    <mat-error *ngIf="false">
+                        Please enter a valid email address
+                    </mat-error>
+                    <mat-error *ngIf="false">
+                        Email is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="mat-full-width">
+                    <mat-label>Mobile</mat-label>
+                    <input type="text" matInput formControlName="mobile">
+                    <mat-error *ngIf="false">
+                        Nobile must be 10 digit
+                    </mat-error>
+                    <mat-error *ngIf="false">
+                        Mobile is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+                <div class="btn">
+                    <button mat-raised-button  color="primary">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>>

@@ -1,0 +1,49 @@
+<form class="mat-form" [formGroup]="signupForm" (ngSubmit)="createUser()">
+
+  <mat-form-field class="mat-full-width">
+    <mat-label>Full Name</mat-label>
+    <input type="text" matInput formControlName="name"
+      [ngClass]="{ 'is-invalid': f.name.invalid && (f.name.dirty || f.name.touched || isSubmitted) }">
+    <mat-error *ngIf="f.name.invalid && (f.name.dirty || f.name.touched || isSubmitted)"
+      class="invalid-feedback d-block">
+      <mat-error *ngIf="f.name.errors.required">Name is <strong>required</strong></mat-error>
+    </mat-error>
+  </mat-form-field>
+
+
+
+  <mat-form-field class="mat-full-width">
+    <mat-label>Email</mat-label>
+    <input type="email" matInput formControlName="email"
+      [ngClass]="{ 'is-invalid': f.email.invalid && (f.email.dirty || f.email.touched || isSubmitted) }">
+    <mat-error *ngIf="f.email.invalid && (f.email.dirty || f.email.touched || isSubmitted)"
+      class="invalid-feedback d-block">
+      <mat-error *ngIf="f.email.errors.required">Email is <strong>required</strong></mat-error>
+      <mat-error *ngIf="f.email.errors.email">Please enter a valid <strong>email</strong></mat-error>
+    </mat-error>
+  </mat-form-field>
+
+
+  <mat-form-field class="mat-full-width">
+    <mat-label>Mobile</mat-label>
+    <input type="text" matInput formControlName="mobile"
+      [ngClass]="{ 'is-invalid': f.mobile.invalid && (f.mobile.dirty || f.mobile.touched || isSubmitted) }">
+      <mat-error *ngIf="f.mobile.invalid && (f.mobile.dirty || f.mobile.touched || isSubmitted)"
+      class="invalid-feedback d-block">
+      <mat-error *ngIf="f.mobile.errors.required">Mobile is <strong>required</strong></mat-error>
+      <mat-error *ngIf="f.mobile.errors.minlength">Mobile must be <strong>10 digit</strong></mat-error>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="mat-full-width">
+    <mat-label>Password</mat-label>
+    <input type="password" matInput formControlName="password"
+      [ngClass]="{ 'is-invalid': f.password.invalid && (f.password.dirty || f.password.touched || isSubmitted) }">
+    <mat-error *ngIf="f.password.invalid && (f.password.dirty || f.password.touched || isSubmitted)"
+      class="invalid-feedback d-block">
+      <mat-error *ngIf="f.password.errors.required">Password is <strong>required</strong></mat-error>
+      <mat-error *ngIf="f.password.errors.minlength">Password must be <strong>6 characters</strong> characters</mat-error>
+    </mat-error>
+  </mat-form-field>
+  <button mat-raised-button style="float: right;" color="primary">Create</button>
+</form>

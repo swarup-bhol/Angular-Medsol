@@ -1,0 +1,26 @@
+
+
+.mat-dialog-content {
+    height: 160px;
+}
+
+mat-list-item{
+    cursor: pointer;
+    font-family: initial;
+    display: inline-flex;
+}
+.profile, .logout, .cancel{
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 13px 57px;
+    position: relative;
+    height: inherit;
+    cursor: pointer;
+    font-family: cursive;
+    display: -webkit-inline-box;
+    display: flex;
+}

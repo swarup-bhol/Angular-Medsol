@@ -1,0 +1,60 @@
+<div class="profile">
+    <div class="mainform">
+        <div class="row">
+            <div class="profilePic">
+                <div class="img" *ngIf="currentUser != userId">
+                    <img src="http://localhost:8080/api/medsol/profile/pic/{{profileData.profile.id}}">
+                </div>
+                <input style="display: none" type="file" (change)="onFileChanged($event)" #fileInput>
+                <div class="img" id="navi" *ngIf="currentUser == userId" (click)="fileInput.click()" style="cursor: pointer;"
+                    data-toggle="tooltip" title="Upload ProfilePic">
+                    <img src="http://localhost:8080/api/medsol/profile/pic/{{profileData?.profile.id}}">
+                    <!-- <div class="spinner-grow text-primary" role="status" id="infoi">
+                        <span class="sr-only">Loading...</span>
+                      </div> -->
+                </div>
+            </div>
+            <div class="details">
+                <div>
+                    <h1><b>{{profileData?.userName}}</b></h1>
+                    <button mat-stroked-button routerLink="/edit-profile" *ngIf="currentUser == userId">Edit Profile</button>
+                    <button  mat-raised-button (click)="followUser()" *ngIf="currentUser != userId && !following" color="primary">Follow</button>
+                    <button mat-stroked-button (click)="unFollowUser()" *ngIf="currentUser != userId && following">Following</button>
+                    <div class="row" id="follow">
+                        <div class="follow1 "><b>{{profileData?.post}} posts</b></div>
+                        <div class="follow2 "><b>{{profileData?.follower}} followers</b></div>
+                        <div class="follow3 "><b>{{profileData?.following}} following</b></div>
+                    </div>
+                </div>
+                <div></div>
+                <div style="margin-top: 2%; ">
+                    <div>#{{profileData?.userName}}</div>
+                    <div>#{{profileData?.profile.profession}}</div>
+                    <div>#{{profileData?.profile.institute}}</div>
+                    <div>#{{profileData?.profile.specialization}}</div>
+                    <div>#{{profileData?.profile.subSpecialization}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="posts row">
+        <div class="post"><img src="./../../../assets/forensic-images.jpg" height="320px" width="320px"></div>
+        <div class="post"><img src="./../../../assets/136995.jpg" height="320px" width="320px"></div>
+        <div class="post"><img src="./../../../assets/image.jpg" height="320px" width="320px"></div>
+    </div>
+    <div class="posts row">
+        <div class="post"><img src="./../../../assets/medical-05.jpg" height="320px" width="320px"></div>
+        <div class="post"><img src="./../../../assets/medical-11.jpg" height="320px" width="320px"></div>
+        <div class="post"><img src="./../../../assets/medsol.jpg" height="320px" width="320px"></div>
+    </div>
+    <div class="posts row">
+        <div class="post"><img src="./../../../assets/136995.jpg" height="320px" width="320px"></div>
+        <div class="post"><img src="./../../../assets/image.jpg" height="320px" width="320px"></div>
+        <div class="post"><img src="./../../../assets/forensic-images.jpg" height="320px" width="320px"></div>
+    </div>
+    <div class="posts row">
+        <div class="post"><img src="./../../../assets/medical-11.jpg" height="320px" width="320px"></div>
+        <div class="post"><img src="./../../../assets/medsol.jpg" height="320px" width="320px"></div>
+        <div class="post"><img src="./../../../assets/medical-05.jpg" height="320px" width="320px"></div>
+    </div>
+</div>
