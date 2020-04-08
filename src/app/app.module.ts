@@ -26,7 +26,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MedsolInterceptorService } from './auth/medsol-interceptor.service';
 import { PostsComponent } from './MedSol/posts/posts.component';
-
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -52,6 +52,7 @@ import { PostsComponent } from './MedSol/posts/posts.component';
     MatSelectModule,
     ReactiveFormsModule,
     MatSnackBarModule,
+    MatIconModule,
     ToastrModule.forRoot()
   ],
   providers: [

@@ -5,7 +5,6 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { LogoutComponent } from '../logout/logout.component';
 import { ToastrService } from 'ngx-toastr';
-import { error } from 'protractor';
 
 @Component({
   selector: 'app-profile',
@@ -16,6 +15,7 @@ export class ProfileComponent implements OnInit, AfterViewChecked {
   currentUser = localStorage.getItem('id');
   private profileUrl = "http://localhost:8080/api/medsol/profile/";
   profileData;
+  PostList;
   following;
   userId: string;
   fileData: File;
@@ -40,6 +40,7 @@ export class ProfileComponent implements OnInit, AfterViewChecked {
     if(this.userId != this.currentUser){
       this.isFollowing(this.userId,this.currentUser);
     }
+    this.getUploadedPosts();
 
   }
   isFollowing(userId: string, currentUser: string) {
@@ -119,5 +120,27 @@ export class ProfileComponent implements OnInit, AfterViewChecked {
   // unfollow User
   unFollowUser() {
 
+  }
+
+  getUploadedPosts(){
+    const url="http://localhost:8080/api/medsol/posts/"+this.userId;
+    this._as.getRequest(url).subscribe(
+      data=>{
+        if(data.status == 200){
+          this.PostList = data.result;
+        }
+      },
+      error=>{
+        if( error.status == 401){
+          this._ts.error("Token Expire Login to procceed")
+          localStorage.removeItem('token')
+          this._router.navigate(['/login'])
+        }
+        else{
+          this._ts.error("Some server error happen")
+        }
+        console.log(error);
+      }
+    )
   }
 }
