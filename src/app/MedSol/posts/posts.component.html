@@ -1,8 +1,17 @@
-<mat-error style="float: right; cursor: pointer;" (click)="closeDialog()">X</mat-error>
+<div class="postHeader">
+    <span>Create Post</span>
+    <mat-error style="float: right; cursor: pointer;" (click)="closeDialog()">X</mat-error>
+</div>
+
 <form [formGroup]="uploadPost" (ngSubmit)="submit()">
     <div class="mycenter">
-        <input mat-input type="text" placeholder="Write Something Here .." formControlName="content"
+        <div class="profileImg">
+            <img src="./.././assets/image.jpg">
+        </div>
+        <div class="postText">
+            <input mat-input type="text" placeholder="Write Something Here .." formControlName="content"
             [ngClass]="{ 'is-invalid': f.content.invalid && (f.content.dirty || f.content.touched || isSubmitted) }">
+        </div>        
     </div>
     <mat-error *ngIf="f.content.invalid && (f.content.dirty || f.content.touched || isSubmitted)" class="invalid-feedback d-block">
         <mat-error *ngIf="f.content.errors.required"> Content is <strong>required</strong></mat-error>
