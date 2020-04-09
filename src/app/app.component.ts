@@ -120,11 +120,17 @@ export class AppComponent implements OnInit,AfterViewChecked {
 
   onKeyUp(event:any){
     console.log(event.target.value);
-    this.isSerched = true;
+    if(this.searchInput =='')
+    {
+      this.isSerched = false;
+    }
+    else{
+      this.isSerched = true;
+    }
+    
   }
 
   onCanleSearchClick(event:any){
-    console.log("cancle Search");
     this.isSerched = false;
     this.searchInput ='';
   }
