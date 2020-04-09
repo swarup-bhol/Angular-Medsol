@@ -26,6 +26,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MedsolInterceptorService } from './auth/medsol-interceptor.service';
 import { PostsComponent } from './MedSol/posts/posts.component';
+import {FormsModule} from '@angular/forms'
 
 
 @NgModule({
@@ -52,6 +53,7 @@ import { PostsComponent } from './MedSol/posts/posts.component';
     MatSelectModule,
     ReactiveFormsModule,
     MatSnackBarModule,
+    FormsModule,
     ToastrModule.forRoot()
   ],
   providers: [
