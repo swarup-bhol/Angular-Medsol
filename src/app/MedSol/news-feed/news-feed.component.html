@@ -5,14 +5,15 @@
     <div class="mainDiv">
         <div class="flex">
             <div class="posts">
-                <mat-card class="flex" style="margin-bottom: 1.5%;">
+                <mat-card class="flex outer-profile-div" style="margin-bottom: 1.5%;">
                     <div class="profilePic">
                         <div class="img" [routerLink]="['/profile',userId]">
-                            <img src="http://localhost:8080/api/medsol/profile/pic/{{profile?.id}}" height="50px" width="50px"></div>
+                            <img src="./.././assets/image.jpg" height="50px" width="50px"></div>
                     </div>
                     <div class="mycenter" (click)="openModal()">
                         <input mat-input type="text" placeholder="Write Something Here ..">
                     </div>
+
                 </mat-card>
                 <div>
                     <mat-card class="example-card">
@@ -32,20 +33,25 @@
                                 bred for hunting.
                             </p>
                         </mat-card-content>
-                        <img src="../../../assets/image.jpg" height="370px" width="678px" alt="Photo of a Shiba Inu">
+                        <img class="post-img" src="../../../assets/image.jpg" height="370px" width="678px" alt="Photo of a Shiba Inu">
                         <mat-card-actions>
                             <button mat-button style="width: 31.33%; color: blue;"><i class="fa fa-thumbs-up"></i>Like</button>
-                            <button mat-button style="width: 31.33%;"><i class="fa fa-comment-o">Comment</i></button>
+                            <button mat-button style="width: 31.33%;" (click)="clickComment()"><i class="fa fa-comment-o">Comment</i></button>
                             <button mat-button style="width: 31.33%;"><i class="fa fa-send-o">Share</i></button>
                         </mat-card-actions>
                         <div style="width:100%; border-top: 0.25px solid silver;">
                            Liked By Swarup Bhol and 59 others 
                         </div>
+                        <div class="outer-commnet">
+                            <div *ngFor="let item of commentList">
+                                <span >{{item.Name}}</span><span>{{item.Comment}}</span>
+                            </div>
+                        </div>
                         <div>
-                            <div class="row newComment">
-                                <div class="col-8 comnt" style="height: 20px;"><input mat-input type="text" placeholder="Write a comment here..">
+                            <div class="newComment">
+                                <div class="comnt" ><input mat-input type="text" #txtComment placeholder="Write a comment here..">
                                 </div>
-                                <div class="cmtBtn">Post</div>
+                                <div class="cmtBtn"><button class="btn btn-primary">post</button></div>
                             </div>
                         </div>
                     </mat-card>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild ,ElementRef} from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 import { APIsService } from 'src/app/Services/apis.service';
 import { ToastrService } from 'ngx-toastr';
@@ -18,14 +18,18 @@ export class NewsFeedComponent implements OnInit {
   userId= localStorage.getItem('id')
   peopleList:[];
   profileDetails: any;
+  commentList: any[] = [{ "Comment": "Exelent", "Name": "Swaroop" },
+  {"Comment": "Superb", "Name": "Ashish"}
+  ];
   profile;
+  @ViewChild('txtComment',{static:true}) txtComment: ElementRef;
   constructor(
     private route: ActivatedRoute,
     private _as: APIsService,
     private _ts: ToastrService,
     private _router: Router,
     private _ps: ProfileService,
-    private _dialog: MatDialog
+    private _dialog: MatDialog,
     ) { }
 
   ngOnInit(): void {
@@ -78,13 +82,18 @@ export class NewsFeedComponent implements OnInit {
       });
   }
   openModal(){
-    const dialogRef = this._dialog.open(PostsComponent, {
-      width: '400px', height: '218px'
+    const dialogRef = this._dialog.open(PostsComponent, {position: {
+        top: '6%',
+        left: '7%'
+      }
     });
-
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
+  }
+
+  clickComment(){
+    this.txtComment.nativeElement.focus();
   }
 
 

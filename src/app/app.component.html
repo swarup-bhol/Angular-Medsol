@@ -2,9 +2,37 @@
 <div class="header" *ngIf="showHeader">
     <div class="row1 headerBody">
         <div class="myleft"  [routerLink]="['/']">Medsol</div>
-        <div class="mycenter">
-            <input mat-input type="text" placeholder="Search Here">
+        <div class="mycenter outer-search-div">
+            <input  [(ngModel)]="searchInput" type="text" placeholder="Search Here" (keyup)="onKeyUp($event)" >
+            <button class="cance-search" (click)="onCanleSearchClick($event)" *ngIf="isSerched">
+                <img src="./../assets/cancel-24px.svg">
+            </button>
+            <div class="display-search-item">
+                <div class="triangle" *ngIf="isSerched"></div>
+                <div class="serach-item" *ngIf="isSerched">
+                    <ul>
+                      <li *ngFor="let item of SearchItem">
+                          <a>
+                             <div class="search-details">
+                                 <div class="serch-detail-img">
+                                     <img src="./.././assets/image.jpg">
+                                 </div>
+                                 <div class="search-details-text">
+                                     <div class="main-text">
+                                         <span>{{item.name}}</span>
+                                     </div>
+                                     <div class="profile-text">
+                                        <span>{{item.grade}}</span>
+                                    </div>
+                                 </div>
+                             </div>
+                          </a>
+                      </li>
+                    </ul>
+                </div>
+            </div>
         </div>
+        
         <div class="myright">
             <button [routerLink]="['/']"><mat-icon>home</mat-icon></button>
         </div>

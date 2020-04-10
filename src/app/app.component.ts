@@ -23,6 +23,52 @@ export class AppComponent implements OnInit,AfterViewChecked {
   userId = localStorage.getItem('id');
   loader: boolean;
   profileDetails: any;
+  isSerched:boolean;
+  searchInput:string='';
+  SearchItem:any[]=[
+    {
+        "userId": 188,
+        "name": "Swarup Bhol",
+        "profileId": 189,
+        "institute": "Vss Medical College",
+        "grade": "Professor"
+    },
+    {
+        "userId": 6,
+        "name": "Manoswin Patro",
+        "profileId": 190,
+        "institute": "Vss college",
+        "grade": "Hospital Dental Surgeons"
+    },
+    {
+        "userId": 191,
+        "name": "Abinash Tiwary",
+        "profileId": 192,
+        "institute": "SCB medical College",
+        "grade": "Consultant"
+    },
+    {
+        "userId": 193,
+        "name": "Naveen Patnayak",
+        "profileId": 194,
+        "institute": "SCB medical College",
+        "grade": "Hospital Dental Surgeons"
+    },
+    {
+        "userId": 195,
+        "name": "Nityanand Kanungo",
+        "profileId": 196,
+        "institute": "VSS Medical COllege",
+        "grade": "Dental Student"
+    },
+    {
+        "userId": 197,
+        "name": "Ridhi Agarwal",
+        "profileId": 198,
+        "institute": "VSS Medical College",
+        "grade": "Ophthalmology"
+    }
+];
   constructor( 
     private _hs: HeaderService,
     public dialog: MatDialog,
@@ -72,5 +118,20 @@ export class AppComponent implements OnInit,AfterViewChecked {
       });
   }
 
+  onKeyUp(event:any){
+    console.log(event.target.value);
+    if(this.searchInput =='')
+    {
+      this.isSerched = false;
+    }
+    else{
+      this.isSerched = true;
+    }
+    
+  }
 
+  onCanleSearchClick(event:any){
+    this.isSerched = false;
+    this.searchInput ='';
+  }
 }
