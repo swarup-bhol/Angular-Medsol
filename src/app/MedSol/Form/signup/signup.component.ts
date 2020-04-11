@@ -5,6 +5,8 @@ import { APIsService } from 'src/app/Services/apis.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { HeaderService } from 'src/app/Services/header.service';
+import {Url} from "src/app/Utils/Utils"
+import { from } from 'rxjs';
 
 
 
@@ -33,7 +35,7 @@ export class SignupComponent implements OnInit {
     private _apiService: APIsService,
     private _ts: ToastrService,
     private _router: Router,
-    private _hs: HeaderService
+    private _hs: HeaderService,
   ) { }
 
   // Instantiating form
@@ -50,12 +52,11 @@ export class SignupComponent implements OnInit {
    // Creating User 
   createUser(){
     this.isSubmitted = true;
+    console.log("xyz");
     if(!this.signupForm.valid) return;
     this._hs.loader.next(true);
-    // url for Creating User
-    const surl = "http://localhost:8080/api/medsol/v1/register";
-    // Making Post request
-    this._apiService.postRequest(surl, this.signupForm.value).subscribe(
+    console.log(this.signupForm.value);
+    this._apiService.postRequest(Url.userRegister, this.signupForm.value).subscribe(
       success=>{ // Success
         if(success.status == 200){
           this._hs.loader.next(false);
@@ -76,6 +77,6 @@ export class SignupComponent implements OnInit {
       }
     );
   }
-  // Form returning form controls
+  //Form returning form controls
   get f() { return this.signupForm.controls; }
 }
