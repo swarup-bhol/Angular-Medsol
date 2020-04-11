@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroupDirective, NgForm, Validators, FormBuilder} from '@angular/forms';
+import {FormControl, FormGroupDirective, NgForm, Validators, FormBuilder, FormGroup} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
 import { HeaderService } from '../../Services/header.service';
+import { element } from 'protractor';
+
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -20,7 +22,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 
 
 export class EditProfileComponent implements OnInit {
-  editForm: any;
+  editForm: FormGroup;
 
   constructor(
     private _fb: FormBuilder,
@@ -29,12 +31,40 @@ export class EditProfileComponent implements OnInit {
   matcher = new MyErrorStateMatcher();
   ngOnInit(): void {
     this._hs.header.next(true);
-    this.editForm = this._fb.group({
-      name:['',[Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
-      mobile:['',[Validators.required, Validators.minLength(10),Validators.maxLength(10)]]
+    this.editForm = new FormGroup({
+      fullName:new FormControl(),
+      email:new FormControl()
+    })
+  }
 
-    });
+  onSideTabChange(selectedTab:string){
+    var tabPane = document.querySelectorAll(".side-tab-pane");
+    tabPane.forEach(function (element) {
+      if(element.classList.contains("active"))
+      {
+        element.classList.remove("active");
+      }
+    })
+
+    var tabPane = document.querySelectorAll(".side-tab");
+    tabPane.forEach(function (element) {
+      if(element.classList.contains("active"))
+      {
+        element.classList.remove("active");
+      }
+    })
+    if (selectedTab == "profile-details") {
+      var tabPane = document.querySelectorAll(".profileDetails");
+      tabPane.forEach(function (element) {
+        element.classList.add("active");
+      })
+    }
+    else {
+      var tabPane = document.querySelectorAll(".changePassword");
+      tabPane.forEach(function (element) {
+        element.classList.add("active");
+      })
+    }
   }
 
 }
