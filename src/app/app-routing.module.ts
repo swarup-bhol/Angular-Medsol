@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'profile/:id', component: ProfileComponent,canActivate: [AuthGuard] },
   { path: 'edit-profile', component: EditProfileComponent ,canActivate: [AuthGuard]},
   { path: 'feeds', component: NewsFeedComponent, canActivate: [AuthGuard] },
-  {path: 'peoples', component:PeopleListComponent}
+  {path: 'peoples/:details/:id', component:PeopleListComponent}
 ];
 
 @NgModule({

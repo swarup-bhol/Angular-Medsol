@@ -24,9 +24,9 @@
                     <button mat-stroked-button (click)="unFollowUser()"
                         *ngIf="currentUser != userId && following">Following</button>
                     <div class="row" id="follow">
-                        <div class="follow1 "><b>{{profileData?.postCount}} posts</b></div>
-                        <div class="follow2 "><b>{{profileData?.followingCount}} followers</b></div>
-                        <div class="follow3 "><b>{{profileData?.followerCount}} following</b></div>
+                        <div class="follow1"><b>{{profileData?.postCount}} posts</b></div>
+                        <div class="follow2" [routerLink]="['/peoples','followers',profileData.user.userId]"><b>{{profileData?.followingCount}} followers</b></div>
+                        <div class="follow3" [routerLink]="['/peoples','followings',profileData.user.userId]"><b>{{profileData?.followerCount}} following</b></div>
                     </div>
                 </div>
                 <div></div>

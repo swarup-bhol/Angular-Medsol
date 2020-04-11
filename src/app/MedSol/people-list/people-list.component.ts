@@ -3,7 +3,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Endpoint } from 'src/app/ApiEndpoints/Endpoint';
 import { APIsService } from 'src/app/Services/apis.service';
 import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-people-list',
@@ -12,25 +12,66 @@ import { Router } from '@angular/router';
 })
 export class PeopleListComponent implements OnInit {
 
-  userId= localStorage.getItem('id')
+  /**
+   * 
+   */
+  userId= localStorage.getItem('id');
+  /**
+   * 
+   */
   peopleList:[];
+  /**
+   * 
+   */
+  id: string;
+  /**
+   * 
+   */
+  details: string;
+  /**
+   * 
+   * @param _as 
+   * @param _ts 
+   * @param _router 
+   * @param _route 
+   */
   constructor(
 
     private _as: APIsService,
     private _ts: ToastrService,
     private _router: Router,
+    private _route: ActivatedRoute,
   ) { }
-
+/**
+ * 
+ */
   ngOnInit(): void {
-    this.getSuggetionPeopleList();
+    this.id = this._route.snapshot.paramMap.get("id");
+    this.details = this._route.snapshot.paramMap.get("details");
+    if(this.details == 'suggetions'){
+      this.getSuggetionPeopleList();
+    }else if(this.details == 'followers'){
+      this.getAllFollowerList();
+    }else{
+     this.getAllFollowingList();
+    }
   }
 
-
+/**
+ * 
+ * @param followingUser 
+ */
   follow(followingUser){
     console.log(followingUser)
   }
 
-  // Get suggested people list
+  unFollowUser(followingUser){
+
+  }
+
+  /**
+   * 
+   */
   getSuggetionPeopleList(){
     this._as.getRequest(Endpoint.API_ENDPOINT+'user/'+this.userId+'/peoples/0/6').subscribe(
       (response) => {
@@ -47,5 +88,17 @@ export class PeopleListComponent implements OnInit {
           }
         }
       });
+  }
+  /**
+   * 
+   */
+  getAllFollowerList(){
+
+  }
+  /**
+   * 
+   */
+  getAllFollowingList(){
+
   }
 }

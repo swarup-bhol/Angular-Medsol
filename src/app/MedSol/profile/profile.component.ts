@@ -42,7 +42,6 @@ export class ProfileComponent implements OnInit, AfterViewChecked {
       this.isFollowing(this.userId,this.currentUser);
     }
     this.getUploadedPosts();
-    console.log('hdh')
 
   }
   isFollowing(userId: string, currentUser: string) {

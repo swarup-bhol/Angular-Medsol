@@ -1,43 +1,39 @@
 .mainDiv{
+    border-top: 1px silver solid;
     background-color: #fbfbfb;
     
 }
 .people-list{
-    margin-top: 10px;
-    padding: 54px;
+    margin-top: 7%;
 }
 
-.peopleList {
-    border: 1px solid #dbdbdb;
-    height: 443px;
-    width: 30%;
-    margin-left: 3%;
-    position: fixed;
-    right: 85px;
-    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
-}
-.profilePic div{
-    height: 30px;
-    width: 30px;
-    border-radius: 30px;
-}
 .profilePic {
-    margin-top: 0.7%;
+    margin-left: 8%;
     width: 9.33%;
 }
 .name {
     width: 54%;
-    margin-top: 3%;
+    margin-top: 1%;
     margin-left: 8%;
     font-size: 15px;
     font-family: cursive;
 }
 .people-name{
-    margin-bottom: -4%;
+    margin-bottom: -2%;
     cursor: pointer;
     outline-style: none;
 }
-.people{
-    height: 70px;
-   
+mat-card {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+span{
+    font-size: 11px;
+}
+img {
+    border-radius: 100px;
+    position: relative;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
 }
