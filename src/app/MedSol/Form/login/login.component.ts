@@ -4,6 +4,8 @@ import { APIsService } from 'src/app/Services/apis.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { HeaderService } from 'src/app/Services/header.service';
+import { Endpoint } from './../../../ApiEndpoints/Endpoint';
+import { ExtendedEndpoint } from './../../../ApiEndpoints/ExtendedEndPoint';
 
 
 
@@ -15,9 +17,6 @@ import { HeaderService } from 'src/app/Services/header.service';
 })
 export class LoginComponent implements OnInit {
   durationInSeconds = 5;
-  private _url = "http://localhost:8080/api/medsol/v1/login";
-  // isSubmited = false;
-  // Constructor
   constructor(
     private _apiservice: APIsService,
     private router: Router,
@@ -40,7 +39,7 @@ export class LoginComponent implements OnInit {
     // this.isSubmited = true;
     if (!this.loginForm.valid) return;
     this._hs.loader.next(true);
-    this._apiservice.postRequest(this._url, this.loginForm.value).subscribe(
+    this._apiservice.postRequest(Endpoint.API_ENDPOINT+ExtendedEndpoint.LOGIN, this.loginForm.value).subscribe(
       data => {
         if (data.status == 200) { 
           localStorage.setItem('token', data.result.token); 

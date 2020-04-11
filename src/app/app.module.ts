@@ -29,6 +29,7 @@ import { PostsComponent } from './MedSol/posts/posts.component';
 import {FormsModule} from '@angular/forms'
 
 import {MatIconModule} from '@angular/material/icon';
+import { PeoplesComponent } from './MedSol/peoples/peoples.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import {MatIconModule} from '@angular/material/icon';
     PeopleListComponent,
     SnackBarComponent,
     InfoComponent,
-    PostsComponent
+    PostsComponent,
+    PeoplesComponent
   ],
   imports: [
     BrowserModule,

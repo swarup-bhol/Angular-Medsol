@@ -5,6 +5,8 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { LogoutComponent } from '../logout/logout.component';
 import { ToastrService } from 'ngx-toastr';
+import { Endpoint } from 'src/app/ApiEndpoints/Endpoint';
+import { ExtendedEndpoint } from 'src/app/ApiEndpoints/ExtendedEndPoint';
 
 @Component({
   selector: 'app-profile',
@@ -13,11 +15,10 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ProfileComponent implements OnInit, AfterViewChecked {
   currentUser = localStorage.getItem('id');
-  private profileUrl = "http://localhost:8080/api/medsol/profile/";
   profileData;
   PostList;
   following;
-  userId: string;
+  userId;
   fileData: File;
   constructor(
     private _hs: HeaderService,
@@ -41,11 +42,11 @@ export class ProfileComponent implements OnInit, AfterViewChecked {
       this.isFollowing(this.userId,this.currentUser);
     }
     this.getUploadedPosts();
+    console.log('hdh')
 
   }
   isFollowing(userId: string, currentUser: string) {
-     const url = "http://localhost:8080/api/user/"+currentUser+"/isFollow/"+userId;
-     this._as.getRequest(url).subscribe(
+     this._as.getRequest(Endpoint.API_ENDPOINT+"user/"+currentUser+"/isFollow/"+userId).subscribe(
        data =>{
         if(data.status == 200){
           this.following = data.result;
@@ -60,17 +61,15 @@ export class ProfileComponent implements OnInit, AfterViewChecked {
 
   // Change profile picturte
   onFileChanged(event) {
-    const uploadUrl = 'http://localhost:8080/api/medsol/profile/upload/profilePic/';
     this.fileData = <File>event.target.files[0];
     const formData = new FormData();
     formData.append('file', this.fileData);
     this._hs.loader.next(true)
-    this._as.postRequest(uploadUrl + this.userId, formData).subscribe(
+    this._as.postRequest(Endpoint.API_ENDPOINT+'medsol/v1/upload/profilePic/' + this.currentUser, formData).subscribe(
       data => {
         if (data.status == 200) {
           this._ts.success('ProfilePicture uploaded Successully');
           this._hs.loader.next(false)
-
           location.reload()
         }
       },
@@ -87,9 +86,10 @@ export class ProfileComponent implements OnInit, AfterViewChecked {
 
   // Get the profile details
   getProfileDetails() {
-    this._as.getRequest(this.profileUrl + this.userId).subscribe(
+    this._as.getRequest(Endpoint.API_ENDPOINT+ExtendedEndpoint.PROFILE+ this.userId).subscribe(
       data => {
         if (data.status == 200) {
+           console.log(data)
           this.profileData = data.result;
         }
       }, error => {
@@ -103,7 +103,7 @@ export class ProfileComponent implements OnInit, AfterViewChecked {
   }
   // Follow the user
   followUser() {
-    const url = "http://localhost:8080/api/user/"+this.currentUser+"/follow/"+this.userId;
+    const url = "http://localhost:8080/api/user/"+this.userId+"/follow/"+this.currentUser;
      this._as.postRequest(url,"").subscribe(
        data =>{
         if(data.status == 200){

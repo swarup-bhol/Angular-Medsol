@@ -5,6 +5,9 @@ import { APIsService } from 'src/app/Services/apis.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { HeaderService } from 'src/app/Services/header.service';
+import { Endpoint } from './../../../ApiEndpoints/Endpoint';
+import { ExtendedEndpoint } from './../../../ApiEndpoints/ExtendedEndPoint';
+
 
 
 
@@ -52,14 +55,12 @@ export class SignupComponent implements OnInit {
     this.isSubmitted = true;
     if(!this.signupForm.valid) return;
     this._hs.loader.next(true);
-    // url for Creating User
-    const surl = "http://localhost:8080/api/medsol/v1/register";
     // Making Post request
-    this._apiService.postRequest(surl, this.signupForm.value).subscribe(
+    this._apiService.postRequest(Endpoint.API_ENDPOINT+ExtendedEndpoint.REGISTER, this.signupForm.value).subscribe(
       success=>{ // Success
         if(success.status == 200){
           this._hs.loader.next(false);
-          this._router.navigate(['/login/info', success.result.email]);
+          this._router.navigate(['/login/info', success.result.userEmail]);
         }else if(success.status == 409) {
           this._hs.loader.next(false);
           this._ts.error("User Already exist");

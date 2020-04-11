@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HeaderService } from './../Services/header.service'
+import {Endpoint} from '../ApiEndpoints/Endpoint';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',

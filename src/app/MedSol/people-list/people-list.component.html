@@ -1,1 +1,19 @@
-<p>people-list works!</p>
+<div class="mainDiv">
+    <div class="people-list">
+        <div class="people" *ngFor="let people of peopleList">
+            <mat-card class="flex">
+                <div class="profilePic">
+                    <div class="img" [routerLink]="['/profile',people.userId]">
+                        <img src="http://localhost:8080/api/medsol/v1/profilePic/{{people.userId}}" height="50px" width="50px">
+                    </div>
+                </div>
+                <div class="name">
+                    <div class="people-name" [routerLink]="['/profile',people.userId]">{{people.fullName}}</div>
+                    <span>{{people.grade}},{{people.instituteName}}</span>
+                </div>
+                <div class="btn"><button mat-raised-button color="primary"
+                        style="margin-top: 1.5%;" (click)=follow(people.userId)>Follow</button></div>
+            </mat-card>
+        </div>
+    </div>
+</div>
