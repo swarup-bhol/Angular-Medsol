@@ -1,20 +1,17 @@
-<div class="profile">
-    <div class="mainform">
+<div class="initial-profile-div">
+    <div class="profile-details-div">
         <div class="row">
-            <div class="profilePic">
-                <div class="img" *ngIf="currentUser != userId">
+            <div class="profile-pic-div">
+                <div class="profile-pic-inner-div" *ngIf="currentUser != userId">
                     <img src="http://localhost:8080/api/medsol/v1/profilePic/{{profileData?.user.userId}}">
                 </div>
                 <input style="display: none" type="file" (change)="onFileChanged($event)" #fileInput>
-                <div class="img" id="navi" *ngIf="currentUser == userId" (click)="fileInput.click()"
+                <div class="profile-pic-inner-div" id="navi" *ngIf="currentUser == userId" (click)="fileInput.click()"
                     style="cursor: pointer;" data-toggle="tooltip" title="Upload ProfilePic">
                     <img src="http://localhost:8080/api/medsol/v1/profilePic/{{profileData?.user.userId}}">
-                    <!-- <div class="spinner-grow text-primary" role="status" id="infoi">
-                        <span class="sr-only">Loading...</span>
-                      </div> -->
                 </div>
             </div>
-            <div class="details">
+            <div class="profile-desc-div">
                 <div>
                     <h1><b>{{profileData?.user.fullName}}</b></h1>
                     <button mat-stroked-button routerLink="/edit-profile" *ngIf="currentUser == userId">Edit
@@ -24,9 +21,11 @@
                     <button mat-stroked-button (click)="unFollowUser()"
                         *ngIf="currentUser != userId && following">Following</button>
                     <div class="row" id="follow">
-                        <div class="follow1"><b>{{profileData?.postCount}} posts</b></div>
-                        <div class="follow2" [routerLink]="['/peoples','followers',profileData.user.userId]"><b>{{profileData?.followingCount}} followers</b></div>
-                        <div class="follow3" [routerLink]="['/peoples','followings',profileData.user.userId]"><b>{{profileData?.followerCount}} following</b></div>
+                        <div class="post-count-div"><b>{{profileData?.postCount}} posts</b></div>
+                        <div class="follower-count-div" [routerLink]="['/peoples','followers',profileData.user.userId]">
+                            <b>{{profileData?.followingCount}} followers</b></div>
+                        <div class="following-count-div" [routerLink]="['/peoples','followings',profileData.user.userId]">
+                            <b>{{profileData?.followerCount}} following</b></div>
                     </div>
                 </div>
                 <div></div>
@@ -40,13 +39,13 @@
             </div>
         </div>
     </div>
-    <div class="posts">
+    <div class="initial-post-div">
         <div style="margin-bottom: 2%; padding: 10px;" *ngFor="let post of PostList">
-            <mat-card class="example-card">
+            <mat-card class="mat-post-card">
 
                 <div class="row">
-                    <div class="col-7 postContent">
-                        <div class="postHeader">
+                    <div class="col-7 post-content-div">
+                        <div class="post-content-header">
                             <mat-card-header>
                                 <div mat-card-avatar class="header-image">
                                     <img src="http://localhost:8080/api/medsol/profile/pic/{{profileData?.profile.id}}"
@@ -58,7 +57,7 @@
                                 </mat-card-subtitle>
                             </mat-card-header>
                         </div>
-                        <div class="content" style="margin-top: auto;">
+                        <div class="content-div">
                             <mat-card-content>
                                 <p>
                                     {{post.content}}
@@ -66,13 +65,14 @@
                             </mat-card-content>
                         </div>
 
-                        <div *ngIf="(post.imgPath | json) != 'null'"> 
-                            <img  src="http://localhost:8080/api/medsol/posts/img/206" alt="Post" height="243px" width="550px">
+                        <div *ngIf="(post.imgPath | json) != 'null'">
+                            <img src="http://localhost:8080/api/medsol/posts/img/206" alt="Post" height="243px"
+                                width="550px">
                         </div>
                     </div>
                     <div class="col-5" style="overflow: hidden;">
 
-                        <div class="comments">
+                        <div class="post-cmt-div">
                             <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
                             <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
                             <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
@@ -98,24 +98,23 @@
 
                         </div>
 
-                        <div class="reactions">
-                            <div class="like" style="margin-bottom: 1.5%;">
+                        <div class="post-react-div">
+                            <div class="post-like-div" style="margin-bottom: 1.5%;">
                                 Liked By Swarup Bhol,Abhidutta Baral and <strong>49 others</strong>
                             </div>
                             <div class="row" style="margin-top: auto;">
-                                <div class="col-4" style="text-align: center; "><i
-                                        class="fa fa-thumbs-up">Like</i></div>
-                                <div class="col-4" style="text-align: center; "><i
-                                        class="fa fa-comment-o">Comment</i></div>
-                                <div class="col-4" style="text-align: center;"><i
-                                        class="fa fa-send-o">Share</i></div>
+                                <div class="col-4" style="text-align: center; "><i class="fa fa-thumbs-up">Like</i>
+                                </div>
+                                <div class="col-4" style="text-align: center; "><i class="fa fa-comment-o">Comment</i>
+                                </div>
+                                <div class="col-4" style="text-align: center;"><i class="fa fa-send-o">Share</i></div>
                             </div>
 
                         </div>
-                        <div class="row newComment">
-                            <div class="col-8 comnt"><input mat-input type="text" placeholder="Write a comment here..">
+                        <div class="row post-new-comment">
+                            <div class="col-8 post-cmt-inp-div"><input mat-input type="text" placeholder="Write a comment here..">
                             </div>
-                            <div class="cmtBtn">Post</div>
+                            <div class="cmt-btn-div">Post</div>
                         </div>
                     </div>
                 </div>

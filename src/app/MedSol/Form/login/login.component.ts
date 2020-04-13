@@ -17,6 +17,16 @@ import { ExtendedEndpoint } from './../../../ApiEndpoints/ExtendedEndPoint';
 })
 export class LoginComponent implements OnInit {
   durationInSeconds = 5;
+
+  /**
+   * @author Swarup Bhol
+   * 
+   * @purpose instantiate the objecy
+   * @param _apiservice 
+   * @param router 
+   * @param _ts 
+   * @param _hs 
+   */
   constructor(
     private _apiservice: APIsService,
     private router: Router,
@@ -24,7 +34,11 @@ export class LoginComponent implements OnInit {
     private _hs: HeaderService
   ) { }
 
-  // Form controls
+  /**
+   * @author Swarup Bhol
+   * 
+   * @purpose Assign the form object
+   */
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required])
@@ -34,7 +48,14 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
 
   }
-  // Submit the Form
+
+  /**
+   * @author Swarup Bhol
+   * 
+   * @purpose login the user
+   * @param
+   * @returns
+   */
   loginUser() {
     // this.isSubmited = true;
     if (!this.loginForm.valid) return;

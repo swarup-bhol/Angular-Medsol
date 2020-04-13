@@ -29,8 +29,17 @@ export class SignupComponent implements OnInit {
   signupForm: FormGroup;
   isSubmitted = false;
 
-
-  // Instantiate Object
+/**
+ * @author swarup bhol
+ * 
+ * 
+ * 
+ * @param _fb 
+ * @param _apiService 
+ * @param _ts 
+ * @param _router 
+ * @param _hs 
+ */
   constructor(
     private _fb: FormBuilder,
     private _apiService: APIsService,
@@ -39,7 +48,12 @@ export class SignupComponent implements OnInit {
     private _hs: HeaderService
   ) { }
 
-  // Instantiating form
+  /**
+   * @author swarup bhol
+   * 
+   * @param
+   * @returns
+   */
   ngOnInit() {
     this.signupForm = this._fb.group({
       name: ['', Validators.required],
@@ -50,7 +64,13 @@ export class SignupComponent implements OnInit {
   }
 
  
-   // Creating User 
+  /**
+   * @author swarup bhol
+   * 
+   * @public create the user
+   * @param
+   * @returns
+   */
   createUser(){
     this.isSubmitted = true;
     if(!this.signupForm.valid) return;
@@ -78,5 +98,12 @@ export class SignupComponent implements OnInit {
     );
   }
   // Form returning form controls
+
+  /**
+   * @author swarup bhol
+   * 
+   * @param
+   * @returns
+   */
   get f() { return this.signupForm.controls; }
 }
