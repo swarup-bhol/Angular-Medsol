@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroupDirective, NgForm, Validators, FormBuilder, FormGroup} from '@angular/forms';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import {FormControl, FormGroupDirective,  Validators, FormBuilder, FormGroup,NgForm} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
 import { HeaderService } from '../../Services/header.service';
 import { element } from 'protractor';
+import { MatDialog ,} from '@angular/material';
+import { EditProfilePhotoComponent } from './edit-profile-photo.component';
 
 
 /** Error when invalid control is dirty, touched, or submitted. */
@@ -22,19 +24,22 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 
 
 export class EditProfileComponent implements OnInit {
-  editForm: FormGroup;
-
+  editForm:FormGroup;
   constructor(
     private _fb: FormBuilder,
-    private _hs: HeaderService
-    ) { }
-  matcher = new MyErrorStateMatcher();
+    private _hs: HeaderService,
+    private _dialog:MatDialog
+    ) {
+      }
   ngOnInit(): void {
     this._hs.header.next(true);
     this.editForm = new FormGroup({
-      fullName:new FormControl(),
-      email:new FormControl()
-    })
+      fullName:new FormControl('',Validators.required),
+      email:new FormControl('',[Validators.required,Validators.email]),
+      profession:new FormControl('',Validators.required),
+      MobileNo:new FormControl('',[Validators.required,Validators.minLength(10)]),
+      Institue: new FormControl('',Validators.required)
+    });
   }
 
   onSideTabChange(selectedTab:string){
@@ -66,5 +71,20 @@ export class EditProfileComponent implements OnInit {
       })
     }
   }
+
+  onEditFomSubmit(){
+
+  }
+
+  changeProfileOpen() {
+    const dialogRef = this._dialog.open(EditProfilePhotoComponent,{
+      panelClass: 'app-full-bleed-dialog', 
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
+  get f() { return this.editForm.controls; }
 
 }

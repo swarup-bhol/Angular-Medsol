@@ -1,6 +1,8 @@
 .edit-profile-outer-div{
     display: flex;
     flex-basis: 70%;
+    min-height: 549px;
+    margin-top: 6%;
 }
 
 .side-profile-div{
@@ -40,8 +42,8 @@
     display: flex;
     flex-direction: column;
     padding-top:4%;
-    padding-left: 10%;
-    padding-right: 5%;
+    padding-left: 6%;
+    padding-right: 7%;
 }
 
 .profile-heading{
@@ -51,6 +53,7 @@
 
 .profile-img{
     flex:30%;
+    text-align: right;
 }
 
 .profile-img img{
@@ -58,6 +61,8 @@
     width: 40px;
     border-radius: 40px;
 }
+
+
 
 .main-profile-div{
     flex:75%;
@@ -75,7 +80,10 @@
     font-size: 18px;
 }
 
-
+.profile-name > a{
+    color:#007bff ;
+    cursor: pointer;
+}
 
 .profile-name{
     display: flex;
@@ -84,21 +92,79 @@
     margin-left: 11%;
 }
 
+
+
 .formcontrol-div{
     display: flex;
     margin-bottom: 30px;
 }
 
+
 .formcontrol-div label{
     flex:30%;
     max-width: 30%;
-    display: inline-flex;
-    justify-items: right;
+    font-size: 16px;
+    text-align: right;
 }
 
-.formcontrol-div input{
-    display: flex;
-    margin-left: 10%;
-    float: 60%;
-    max-width: 60%;
+.formcontrol-div label{
+    margin-left: 6%;
 }
+
+
+
+
+
+.input-controller{
+    display: flex;
+    flex-basis:70%;
+    flex-direction: column;
+    margin-left: 10%;
+    padding-right: 15%;
+}
+
+.formcontrol-div button{
+    margin-left:5%;
+}
+
+@media only screen and (max-width:420px){
+    .side-profile-div{
+        display: none;
+    }
+
+    .main-profile-div{
+        flex-basis: 100%;
+        width: 100%;
+    }
+
+    .edit-profile-outer-div{
+        margin-top: 22%;
+        flex-basis: 100%;
+        width: 100%;
+    }
+
+    .formcontrol-div label{
+        flex:30%;
+        max-width: 30%;
+        font-size: 10px;
+        text-align: right;
+    }
+
+    .formcontrol-div{
+        display: flex;
+        margin-bottom: 20px;
+    }
+    
+    .form-control{
+        height: 25px;
+    }
+
+    .input-controller{
+        padding-right: 0%;
+    }
+
+    .formcontrol-div button {
+        height: 35px;
+    }
+}
+

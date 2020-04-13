@@ -30,6 +30,7 @@ import {FormsModule} from '@angular/forms'
 
 import {MatIconModule} from '@angular/material/icon';
 import { PeoplesComponent } from './MedSol/peoples/peoples.component';
+import { EditProfilePhotoComponent } from './MedSol/edit-profile/edit-profile-photo.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { PeoplesComponent } from './MedSol/peoples/peoples.component';
     SnackBarComponent,
     InfoComponent,
     PostsComponent,
-    PeoplesComponent
+    PeoplesComponent,
+    EditProfilePhotoComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +69,7 @@ import { PeoplesComponent } from './MedSol/peoples/peoples.component';
       multi: true
     }
   ],
-  entryComponents:[LogoutComponent, PostsComponent],
+  entryComponents:[LogoutComponent,PostsComponent,EditProfilePhotoComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
