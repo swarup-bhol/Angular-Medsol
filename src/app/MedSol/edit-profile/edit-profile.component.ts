@@ -4,7 +4,7 @@ import {ErrorStateMatcher} from '@angular/material/core';
 import { HeaderService } from '../../Services/header.service';
 import { element } from 'protractor';
 import { MatDialog ,} from '@angular/material';
-import { EditProfilePhotoComponent } from './edit-profile-photo/edit-profile-photo.component';
+import { EditProfilePhotoComponent } from './edit-profile-photo.component';
 
 
 /** Error when invalid control is dirty, touched, or submitted. */
