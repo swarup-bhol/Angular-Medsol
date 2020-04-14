@@ -1,0 +1,93 @@
+<div class="outer-div">
+    <div class="edit-profile-outer-div mat-elevation-z8" >
+        <div class="side-profile-div ">
+            <div class="edit-profile-Text side-tab active profileDetails">
+                <a (click)="onSideTabChange('profile-details')">Edit-Profile</a>
+            </div>
+            <div class="change-password side-tab changePassword">
+                <a (click)="onSideTabChange('change-password')">change-password</a>
+            </div>
+        </div>
+        <div class="side-tab-pane active main-profile-div profileDetails">
+            <div class=" profile-heading">
+                <div class= "profile-img">
+                    <img src="./.././assets/image.jpg">
+                </div> 
+                <div class="profile-name">
+                    <label>Swaroop</label>
+                    <a (click)="changeProfileOpen()">Edit Profile Picture</a>
+                </div>
+            </div>
+            <div class=" profile-details">
+                <form [formGroup]="editForm" (ngSubmit)="onEditFomSubmit()">
+                    <div class="formcontrol-div">
+                        
+                        <label >NAME</label>
+                        <div class="input-controller">
+                            <input class="form-control" formControlName="fullName" [ngClass]="{'is-invalid': editForm.get('fullName').invalid &&(editForm.get('fullName').touched||editForm.get('fullName').dirty ) }"/>
+                            <span class="alert-danger" *ngIf="(f.fullName.touched||f.fullName.dirty )&& !f.fullName.errors.required"> name is required</span>
+                        </div>
+                    </div>                 
+                    <div class="formcontrol-div">
+                        <label>EMAIL</label>
+                        <div class="input-controller">
+                            <input class="form-control" formControlName="email" [ngClass]="{'is-invalid': editForm.get('email').invalid &&(editForm.get('email').touched||editForm.get('email').dirty ) }">
+                            <span class="alert-danger" *ngIf="f.email.errors.required"> email is required</span>
+                            <span class="alert-danger" *ngIf="f.email.errors.email"> Enter correct email</span>
+                        </div>
+                        
+                    </div>
+                    <div class="formcontrol-div">
+                        <label>PROFESSION</label>
+                        <div class="input-controller">
+                            <input class="form-control" formControlName="profession" [ngClass]="{'is-invalid': editForm.get('profession').invalid && ( editForm.get('profession').touched ||  editForm.get('profession').dirty ) }">
+                            <span class="alert-danger" *ngIf=" f.profession.errors.required"> profession is required</span>
+                        </div>                       
+                    </div>
+                    <div class="formcontrol-div">
+                        <label>Mobile No</label>
+                        <div class="input-controller">
+                            <input class="form-control" formControlName="MobileNo" [ngClass]="{'is-invalid':f.MobileNo.invalid && (f.MobileNo.touched || f.MobileNo.dirty)}">
+                            <span class="alert-danger" *ngIf="f.MobileNo.touched && f.MobileNo.errors.required"> Mobile No is required</span>
+                            <span class="alert-danger" *ngIf="f.MobileNo.touched && f.MobileNo.errors.minlength">Min Length is 10</span>
+                        </div>                       
+                    </div>
+                    <div class="formcontrol-div">
+                        <label>INSTITUTE</label>
+                        <div class="input-controller">
+                            <input class="form-control" formControlName="Institue" [ngClass]="{'is-invalid':f.Institue.invalid && (f.Institue.touched || f.Institue.dirty)}">
+                            <span class="alert-danger" *ngIf="f.Institue.touched && f.Institue.errors.required"> Mobile No is required</span>
+                        </div>                       
+                    </div>
+                    <div class="formcontrol-div">
+                        <label></label>
+                        <button class="btn btn-primary">Update</button>                    
+                    </div>
+                </form>
+            </div>           
+            </div>
+            <div class="side-tab-pane  main-profile-div changePassword" >
+                <div class=" profile-details">
+                    <div class="formcontrol-div">
+                        
+                        <label >Current password</label>
+                        <div class="input-controller">
+                            <input class="form-control">
+                        </div>                       
+                    </div>
+                    <div class="formcontrol-div">
+                        <label>New password</label>
+                        <div class="input-controller">
+                            <input class="form-control">
+                        </div> 
+                    </div>
+                    <div class="formcontrol-div">
+                        <label >Confirm Password</label>
+                        <div class="input-controller">
+                            <input class="form-control">
+                        </div> 
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>

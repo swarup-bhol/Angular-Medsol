@@ -29,6 +29,10 @@ import {FormsModule} from '@angular/forms'
 
 import {MatIconModule} from '@angular/material/icon';
 import { PeoplesComponent } from './MedSol/peoples/peoples.component';
+<<<<<<< HEAD
+=======
+import { EditProfilePhotoComponent } from './MedSol/edit-profile/edit-profile-photo/edit-profile-photo.component';
+>>>>>>> ab4c895ef9503e90f28c8b911263997811e7d774
 
 @NgModule({
   declarations: [
