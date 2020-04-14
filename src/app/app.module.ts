@@ -30,7 +30,7 @@ import {FormsModule} from '@angular/forms'
 
 import {MatIconModule} from '@angular/material/icon';
 import { PeoplesComponent } from './MedSol/peoples/peoples.component';
-import { EditProfilePhotoComponent } from './MedSol/edit-profile/edit-profile-photo.component';
+import { EditProfilePhotoComponent } from './MedSol/edit-profile/edit-profile-photo/edit-profile-photo.component';
 
 @NgModule({
   declarations: [

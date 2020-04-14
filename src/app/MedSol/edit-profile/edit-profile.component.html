@@ -25,7 +25,7 @@
                         <label >NAME</label>
                         <div class="input-controller">
                             <input class="form-control" formControlName="fullName" [ngClass]="{'is-invalid': editForm.get('fullName').invalid &&(editForm.get('fullName').touched||editForm.get('fullName').dirty ) }"/>
-                            <span class="alert-danger" *ngIf=""> name is required</span>
+                            <span class="alert-danger" *ngIf="(f.fullName.touched||f.fullName.dirty )&& !f.fullName.errors.required"> name is required</span>
                         </div>
                     </div>                 
                     <div class="formcontrol-div">
