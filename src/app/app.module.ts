@@ -15,7 +15,6 @@ import { HttpClientModule} from '@angular/common/http';
 
 import { LoginComponent } from './MedSol/Form/login/login.component';
 import { SignupComponent } from './MedSol/Form/signup/signup.component';
-import { EditProfileComponent } from './MedSol/edit-profile/edit-profile.component';
 import { LogoutComponent } from './MedSol/logout/logout.component';
 
 import { PeopleListComponent } from './Medsol/people-list/people-list.component';
@@ -39,13 +38,12 @@ import { PeoplesComponent } from './MedSol/peoples/peoples.component';
     NewsFeedComponent,
     LoginComponent,
     SignupComponent,
-    EditProfileComponent,
     LogoutComponent,
     PeopleListComponent,
     SnackBarComponent,
     InfoComponent,
     PostsComponent,
-    PeoplesComponent
+    PeoplesComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,7 +65,7 @@ import { PeoplesComponent } from './MedSol/peoples/peoples.component';
       multi: true
     }
   ],
-  entryComponents:[LogoutComponent, PostsComponent],
+  entryComponents:[LogoutComponent,PostsComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
