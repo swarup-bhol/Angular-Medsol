@@ -1,66 +1,3 @@
-<<<<<<< HEAD
-<div class="main-outer-div">
-    <div class="outer-div">
-        <div class="edit-profile-outer-div mat-elevation-z8" style="margin-top: 6%;">
-            <div class="side-profile-div ">
-                <div class="edit-profile-Text side-tab active profileDetails">
-                    <a (click)="onSideTabChange('profile-details')">Edit-Profile</a>
-                </div>
-                <div class="change-password side-tab changePassword">
-                    <a (click)="onSideTabChange('change-password')">change-password</a>
-                </div>
-            </div>
-            <div class="side-tab-pane active main-profile-div profileDetails">
-                <div class=" profile-heading">
-                    <div class= "profile-img">
-                        <img src="./.././assets/image.jpg">
-                    </div> 
-                    <div class="profile-name">
-                        <label>Swaroop</label>
-                        <label>Edit Profile Picture</label>
-                    </div>
-                </div>
-                <div class=" profile-details">
-                    <form>
-                        <div class="formcontrol-div">
-                            <label >NAME</label>
-                            <input class="form-control">
-                        </div>
-                        <div class="formcontrol-div">
-                            <label>EMAIL</label>
-                            <input class="form-control">
-                        </div>
-                        <div class="formcontrol-div">
-                            <label>PROFESSION</label>
-                            <input class="form-control">
-                        </div>
-                        <div class="formcontrol-div">
-                            <label>SUB-PROFESSION</label>
-                            <input class="form-control">
-                        </div>
-                        <div class="formcontrol-div">
-                            <label>INSTITUE</label>
-                            <input class="form-control">
-                        </div>
-                    </form>
-                </div>
-                
-                </div>
-                <div class="side-tab-pane  main-profile-div changePassword" >
-                    <div class=" profile-details">
-                        <div class="formcontrol-div">
-                            <label >Current password</label>
-                            <input class="form-control">
-                        </div>
-                        <div class="formcontrol-div">
-                            <label>New password</label>
-                            <input class="form-control">
-                        </div>
-                        <div class="formcontrol-div">
-                            <label >Confirm Password</label>
-                            <input class="form-control">
-                        </div>
-=======
 <div class="outer-div">
     <div class="edit-profile-outer-div mat-elevation-z8" >
         <div class="side-profile-div ">
@@ -88,7 +25,7 @@
                         <label >NAME</label>
                         <div class="input-controller">
                             <input class="form-control" formControlName="fullName" [ngClass]="{'is-invalid': editForm.get('fullName').invalid &&(editForm.get('fullName').touched||editForm.get('fullName').dirty ) }"/>
-                            <span class="alert-danger" *ngIf=""> name is required</span>
+                            <span class="alert-danger" *ngIf="(f.fullName.touched||f.fullName.dirty )&& !f.fullName.errors.required"> name is required</span>
                         </div>
                     </div>                 
                     <div class="formcontrol-div">
@@ -149,9 +86,8 @@
                         <div class="input-controller">
                             <input class="form-control">
                         </div> 
->>>>>>> 7a042d8c2a184da3ce0e57ea66c912318de0f615
                     </div>
                 </div>
-        </div>
+            </div>
     </div>
 </div>

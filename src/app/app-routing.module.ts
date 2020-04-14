@@ -7,6 +7,7 @@ import { AuthGuard } from './auth/guard/auth.guard';
 import { LoginGuard } from './auth/guard/login.guard';
 import { InfoComponent } from './MedSol/Form/info/info.component';
 import { PeopleListComponent } from './Medsol/people-list/people-list.component';
+import { EditProfileComponent } from './MedSol/edit-profile/edit-profile.component';
 
 
 
@@ -15,7 +16,7 @@ const routes: Routes = [
   { path: 'login', component: HomeComponent ,canActivate: [LoginGuard]},
   { path: 'login/info/:username', component: InfoComponent},
   { path: 'profile/:id', component: ProfileComponent,canActivate: [AuthGuard] },
-  // { path: 'edit-profile', component: EditProfileComponent ,canActivate: [AuthGuard]},
+  { path: 'edit-profile', component: EditProfileComponent ,canActivate: [AuthGuard]},
   { path: 'feeds', component: NewsFeedComponent, canActivate: [AuthGuard] },
   {path: 'peoples/:details/:id', component:PeopleListComponent}
 ];

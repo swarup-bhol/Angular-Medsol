@@ -51,6 +51,8 @@ h1 {
 .post-count-div, .follower-count-div, .following-count-div {
     width: 33.33%;
     margin-top: 7%;
+    cursor: pointer;
+    outline-style: none;
 }
 
 

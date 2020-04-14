@@ -23,6 +23,10 @@ export class PeopleListComponent implements OnInit {
   /**
    * 
    */
+  followerList:[];
+  /**
+   * 
+   */
   id: string;
   /**
    * 
@@ -45,10 +49,14 @@ export class PeopleListComponent implements OnInit {
 /**
  * 
  */
+matCardDiv = false;
+ sug1 = 'suggetions'
+ sug2 = 'followers'
   ngOnInit(): void {
     this.id = this._route.snapshot.paramMap.get("id");
     this.details = this._route.snapshot.paramMap.get("details");
     if(this.details == 'suggetions'){
+      this.matCardDiv = true;
       this.getSuggetionPeopleList();
     }else if(this.details == 'followers'){
       this.getAllFollowerList();
@@ -93,12 +101,42 @@ export class PeopleListComponent implements OnInit {
    * 
    */
   getAllFollowerList(){
-
+    this._as.getRequest(Endpoint.API_ENDPOINT+'user/'+this.id).subscribe(
+      (response) => {
+        if(response.status == 200) this.followerList = response.result;
+        console.log(this.followerList)
+      },
+      (err) => 
+      {
+        if (err instanceof HttpErrorResponse) {
+          if (err.status === 401) {
+            localStorage.removeItem('token');
+            localStorage.removeItem('id');
+            this._ts.error('Token Expire PLease login to Procceed');
+            this._router.navigate(['/login']);
+          }
+        }
+      });
   }
   /**
    * 
    */
   getAllFollowingList(){
-
+    this._as.getRequest(Endpoint.API_ENDPOINT+'user/following/'+this.id).subscribe(
+      (response) => {
+        if(response.status == 200) this.followerList = response.result;
+        console.log(this.followerList)
+      },
+      (err) => 
+      {
+        if (err instanceof HttpErrorResponse) {
+          if (err.status === 401) {
+            localStorage.removeItem('token');
+            localStorage.removeItem('id');
+            this._ts.error('Token Expire PLease login to Procceed');
+            this._router.navigate(['/login']);
+          }
+        }
+      });
   }
 }

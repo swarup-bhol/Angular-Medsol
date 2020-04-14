@@ -26,7 +26,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MedsolInterceptorService } from './auth/medsol-interceptor.service';
 import { PostsComponent } from './MedSol/posts/posts.component';
 import {FormsModule} from '@angular/forms'
-
+import { EditProfileComponent } from './MedSol/edit-profile/edit-profile.component';
 import {MatIconModule} from '@angular/material/icon';
 import { PeoplesComponent } from './MedSol/peoples/peoples.component';
 import { EditProfilePhotoComponent } from './MedSol/edit-profile/edit-profile-photo/edit-profile-photo.component';
@@ -39,6 +39,7 @@ import { EditProfilePhotoComponent } from './MedSol/edit-profile/edit-profile-ph
     ProfileComponent,
     NewsFeedComponent,
     LoginComponent,
+    EditProfileComponent,
     SignupComponent,
     EditProfilePhotoComponent,
     LogoutComponent,
@@ -68,7 +69,7 @@ import { EditProfilePhotoComponent } from './MedSol/edit-profile/edit-profile-ph
       multi: true
     }
   ],
-  entryComponents:[LogoutComponent,PostsComponent],
+  entryComponents:[LogoutComponent,EditProfilePhotoComponent,PostsComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
