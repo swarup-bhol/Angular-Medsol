@@ -13,7 +13,7 @@
             </div>
             <div class="profile-desc-div">
                 <div>
-                    <h1><b>{{profileData?.user.fullName}}</b></h1>
+                    <h1><b>{{profileData?.user?.fullName}}</b></h1>
                     <button mat-stroked-button routerLink="/edit-profile" *ngIf="currentUser == userId">Edit
                         Profile</button>
                     <button mat-raised-button (click)="followUser()" *ngIf="currentUser != userId && !following"
@@ -22,15 +22,15 @@
                         *ngIf="currentUser != userId && following">Following</button>
                     <div class="row" id="follow">
                         <div class="post-count-div"><b>{{profileData?.postCount}} posts</b></div>
-                        <div class="follower-count-div" [routerLink]="['/peoples','followers',profileData.user.userId]">
+                        <div class="follower-count-div" [routerLink]="['/peoples','followers',profileData?.user?.userId]">
                             <b>{{profileData?.followingCount}} followers</b></div>
-                        <div class="following-count-div" [routerLink]="['/peoples','followings',profileData.user.userId]">
+                        <div class="following-count-div" [routerLink]="['/peoples','followings',profileData?.user?.userId]">
                             <b>{{profileData?.followerCount}} following</b></div>
                     </div>
                 </div>
                 <div></div>
                 <div style="margin-top: 2%; ">
-                    <div>#{{profileData?.user.fullName}}</div>
+                    <div>#{{profileData?.user?.fullName}}</div>
                     <div>#{{profileData?.profession}}</div>
                     <div>#{{profileData?.user.instituteName}}</div>
                     <div>#{{profileData?.specialization}}</div>
@@ -48,67 +48,43 @@
                         <div class="post-content-header">
                             <mat-card-header>
                                 <div mat-card-avatar class="header-image">
-                                    <img src="http://localhost:8080/api/medsol/profile/pic/{{profileData?.profile.id}}"
+                                    <img src="http://localhost:8080/api/medsol/v1/profilePic/{{profileData?.user?.userId}}"
                                         height="50px" width="50px">
                                 </div>
-                                <mat-card-title>{{profileData?.userName}}</mat-card-title>
-                                <mat-card-subtitle>{{profileData?.profile.profession}} |
-                                    {{post.uploadedTime | date:'dd/MM/yyyy'}}:{{post.uploadedTime | date:"HH:mm"}}
+                                <mat-card-title>{{profileData?.user?.fullName}}</mat-card-title>
+                                <mat-card-subtitle>{{profileData?.profession}} |
+                                    {{post.postUploadTime | date:'dd/MM/yyyy'}}:{{post.postUploadTime | date:"HH:mm"}}
                                 </mat-card-subtitle>
                             </mat-card-header>
                         </div>
                         <div class="content-div">
                             <mat-card-content>
                                 <p>
-                                    {{post.content}}
+                                    {{post.postContent}}
                                 </p>
                             </mat-card-content>
                         </div>
 
                         <div *ngIf="(post.imgPath | json) != 'null'">
-                            <img src="http://localhost:8080/api/medsol/posts/img/206" alt="Post" height="243px"
+                            <img src="http://localhost:8080/api/medsol/posts/img/{{post.postId}}" alt="Post" height="310px"
                                 width="550px">
                         </div>
                     </div>
                     <div class="col-5" style="overflow: hidden;">
 
                         <div class="post-cmt-div">
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-
+                            <div><strong>Swarup Bhol</strong>  : Nice Pic </div>
                         </div>
 
                         <div class="post-react-div">
                             <div class="post-like-div" style="margin-bottom: 1.5%;">
                                 Liked By Swarup Bhol,Abhidutta Baral and <strong>49 others</strong>
                             </div>
-                            <div class="row" style="margin-top: auto;">
-                                <div class="col-4" style="text-align: center; "><i class="fa fa-thumbs-up">Like</i>
-                                </div>
-                                <div class="col-4" style="text-align: center; "><i class="fa fa-comment-o">Comment</i>
-                                </div>
-                                <div class="col-4" style="text-align: center;"><i class="fa fa-send-o">Share</i></div>
-                            </div>
+                                <mat-card-actions>
+                                    <button mat-button style="width: 30.33%; color: blue;"><i class="fa fa-thumbs-up"></i>Like</button>
+                                    <button mat-button style="width: 30.33%;" (click)="clickComment()"><i class="fa fa-comment-o">Comment</i></button>
+                                    <button mat-button style="width: 30.33%;"><i class="fa fa-send-o">Share</i></button>
+                                </mat-card-actions>
 
                         </div>
                         <div class="row post-new-comment">

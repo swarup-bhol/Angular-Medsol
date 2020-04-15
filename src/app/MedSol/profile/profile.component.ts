@@ -128,6 +128,7 @@ export class ProfileComponent implements OnInit, AfterViewChecked {
         if(data.status == 200){
           this.PostList = data.result;
         }
+        console.log(data)
       },
       error=>{
         if( error.status == 401){
@@ -141,5 +142,8 @@ export class ProfileComponent implements OnInit, AfterViewChecked {
         console.log(error);
       }
     )
+  }
+  clickComment(){
+    
   }
 }
