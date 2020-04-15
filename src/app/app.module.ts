@@ -15,7 +15,6 @@ import { HttpClientModule} from '@angular/common/http';
 
 import { LoginComponent } from './MedSol/Form/login/login.component';
 import { SignupComponent } from './MedSol/Form/signup/signup.component';
-import { EditProfileComponent } from './MedSol/edit-profile/edit-profile.component';
 import { LogoutComponent } from './MedSol/logout/logout.component';
 
 import { PeopleListComponent } from './Medsol/people-list/people-list.component';
@@ -27,10 +26,11 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MedsolInterceptorService } from './auth/medsol-interceptor.service';
 import { PostsComponent } from './MedSol/posts/posts.component';
 import {FormsModule} from '@angular/forms'
-
+import { EditProfileComponent } from './MedSol/edit-profile/edit-profile.component';
 import {MatIconModule} from '@angular/material/icon';
 import { PeoplesComponent } from './MedSol/peoples/peoples.component';
 import { EditProfilePhotoComponent } from './MedSol/edit-profile/edit-profile-photo/edit-profile-photo.component';
+
 
 @NgModule({
   declarations: [
@@ -39,15 +39,15 @@ import { EditProfilePhotoComponent } from './MedSol/edit-profile/edit-profile-ph
     ProfileComponent,
     NewsFeedComponent,
     LoginComponent,
-    SignupComponent,
     EditProfileComponent,
+    SignupComponent,
+    EditProfilePhotoComponent,
     LogoutComponent,
     PeopleListComponent,
     SnackBarComponent,
     InfoComponent,
     PostsComponent,
     PeoplesComponent,
-    EditProfilePhotoComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +69,7 @@ import { EditProfilePhotoComponent } from './MedSol/edit-profile/edit-profile-ph
       multi: true
     }
   ],
-  entryComponents:[LogoutComponent,PostsComponent,EditProfilePhotoComponent],
+  entryComponents:[LogoutComponent,EditProfilePhotoComponent,PostsComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

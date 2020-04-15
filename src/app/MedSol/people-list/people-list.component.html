@@ -1,5 +1,7 @@
 <div class="mainDiv">
     <div class="people-list">
+      <div>
+          <div style="margin-left: 20%;">Suggetions</div>
         <div class="people" *ngFor="let people of peopleList">
             <mat-card class="flex">
                 <div class="row">
@@ -22,5 +24,31 @@
                 </div>
             </mat-card>
         </div>
+        <div>
+            <div style="margin-left: 20%;">Followers ..</div>
+            <div class="people" *ngFor="let people of followerList">
+                <mat-card class="flex">
+                    <div class="row">
+                        <div class="profilePic">
+                            <div class="img" [routerLink]="['/profile',people.user.userId]">
+                                <img src="http://localhost:8080/api/medsol/v1/profilePic/{{people.user.userId}}" height="60px"
+                                    width="60px">
+                            </div>
+                        </div>
+                        <div class="name">
+                            <div class="people-name" [routerLink]="['/profile',people.user.userId]">{{people.user.fullName}}</div>
+                            <span>{{people.profession}},{{people.user.instituteName}}</span>
+                        </div>
+                        <div class="btn" *ngIf="people.following == false">
+                            <button mat-raised-button color="primary" style="margin-top: 1.5%;" (click)=follow(people.user.userId)>Follow</button>
+                        </div>
+                        <div class="btn" *ngIf="people.following ==  true">
+                            <button mat-stroked-button  style="margin-top: 1.5%;" (click)="unFollowUser(people.user.userId)">Following</button>
+                        </div>
+                    </div>
+                </mat-card>
+            </div>
+        </div>
+      </div>
     </div>
 </div>

@@ -1,45 +1,44 @@
-.profile {
+.initial-profile-div {
     background-color: #fbfbfb;
-    /* height: 100%; */
 }
 
-.mainform {
+.profile-details-div {
     border-top: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
     height: 350px;
     border-bottom: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
     width: 80%;
     margin-left: 10%;
-    /* align-self: center; */
 }
 
-.img {
+.profile-pic-inner-div {
     position: relative;
     margin-left: 30%;
     width: 33.33%;
     background-size: cover;
     display: block;
-    /* background-image: url(""); */
 }
 
-.img img {
-    border-radius: 100px;
+.profile-pic-inner-div img {
     -webkit-border-radius: 100px;
     -moz-border-radius: 100px;
+    border-radius: 100px;
     width: 150px;
     height: 150px;
 }
 
-.profilePic {
+.profile-pic-div {
     margin-top: 12%;
     width: 33.33%;
 }
+
+
 
 .mat-elevation-z {
     width: 80%;
     height: 100%;
 }
 
-.details {
+.profile-desc-div {
     margin-top: 12%;
     float: left;
     width: 400px;
@@ -49,10 +48,14 @@ h1 {
     margin-top: 5%;
 }
 
-.follow1, .follow2, .follow3 {
+.post-count-div, .follower-count-div, .following-count-div {
     width: 33.33%;
     margin-top: 7%;
+    cursor: pointer;
+    outline-style: none;
 }
+
+
 
 .row {
     display: flex;
@@ -67,7 +70,9 @@ button {
     margin-top: -3%;
 }
 
-.posts {
+
+
+.initial-post-div {
     margin-top: 2%;
     margin-left: 10%;
     margin-left: 10%;
@@ -81,10 +86,12 @@ button {
     z-index: 10;
 }
 
-.example-card {
+.mat-post-card {
     max-width: 87%;
     height: 415px;
 }
+
+
 
 .header-image img {
     border-radius: 100px;
@@ -97,16 +104,19 @@ button {
     background-size: cover;
 }
 
-.content {
+.content-div {
     margin-top: 3%;
+    margin-top: auto;
 }
 
-.postContent {
+
+
+.post-content-div {
     margin: auto;
     height: 386px;
 }
 
-.postHeader {
+.post-content-header {
     position: static;
     width: 100%;
     z-index: 3;
@@ -117,37 +127,32 @@ button {
     margin-left: auto;
 }
 
-.comments {
+
+.post-cmt-div {
     height: 300px;
     overflow: auto;
     scrollbar-width: 0px;
     background-color: #fbfbfb;
 }
-
-.newComment {
+.post-new-comment {
     border-top: 0.25px solid silver;
     margin-left: 1%;
     height: 35px;
     margin-top: auto;
-    /* padding: 1px; */
-    /* margin-top: auto; */
 }
-
-.comnt input {
+.post-cmt-inp-div input {
     height: 100%;
     width: 100%;
     border: none;
     outline: none;
     margin-top: auto;
 }
-
-.cmtBtn {
+.cmt-btn-div {
  margin-top: auto;
  color: blue;
  cursor: pointer;
 
 }
-
-.reactions {
+.post-react-div {
     margin-top: 2%;
 }

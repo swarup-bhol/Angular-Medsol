@@ -26,7 +26,18 @@ export class InfoComponent implements OnInit {
   email: string;
 
 
-  // Instantiating objects
+  /**
+   * @author Swarup Bhol
+   * 
+   * @purpose Instantiate object
+   * 
+   * @param fb 
+   * @param _apiService 
+   * @param _hs 
+   * @param _ts 
+   * @param route 
+   * @param router 
+   */
   constructor(
     private fb: FormBuilder,
     private _apiService: APIsService,
@@ -36,8 +47,14 @@ export class InfoComponent implements OnInit {
     private router: Router,
   ) { }
 
-  // Init Method to crearte form instances
-  // Get the parameter value 
+  /**
+   * @author swarup Bhol
+   * 
+   * @purpose call the initial requests
+   * 
+   * @argument 
+   * @returns void
+   */
   ngOnInit() {
     this._hs.loader.next(true);
     this.email = this.route.snapshot.paramMap.get("username");
@@ -57,7 +74,13 @@ export class InfoComponent implements OnInit {
   }
 
 
-  // Getting All profession
+  /**
+   * @author Swarup Bhol
+   * 
+   * @purpose  Getting all profession details
+   * @param
+   * @returns
+   */
   getAllProfession() {
     this._apiService.getRequest(Endpoint.API_ENDPOINT + 'medsol/profession/all').subscribe(
       data => {
@@ -76,7 +99,15 @@ export class InfoComponent implements OnInit {
 
     );
   }
-  //Get Specialization
+  
+  /**
+   * @author swarup bhol
+   * 
+   * @purpose get all specialization depends upon profession
+   * @param id 
+   * 
+   * @returns 
+   */
   onProfSelect(id) {
     if (id != '20' || id != '22' || id != '23') {
       this.gradeSelect = false;
@@ -90,7 +121,13 @@ export class InfoComponent implements OnInit {
     else this.checkProf = true;
   }
 
-  //Get all Specializations 
+  /**
+   * @author Swarup Bhol
+   * 
+   * @purpose getting all specialization 
+   * @param
+   * @returns
+   */
   getAllSpecialization() {
     this._apiService.getRequest(Endpoint.API_ENDPOINT + 'medsol/profession/spec/20').subscribe(
       data => {
@@ -98,7 +135,14 @@ export class InfoComponent implements OnInit {
       }
     );
   }
-  // Getting the subspecialization list
+
+  /**
+   * @author swarup
+   * 
+   * @purpose getting sub-specializtion according to previously selected specialization
+   * @param id 
+   * @returns
+   */
   onSpecSelected(id) {
     this._apiService.getRequest(Endpoint.API_ENDPOINT + 'medsol/profession/subSpec/' + id).subscribe(
       data => {
@@ -107,11 +151,15 @@ export class InfoComponent implements OnInit {
     );
   }
 
-
-  // Submitting the form
+/**
+ * @author swarup bhol
+ * 
+ * @purpose submit the form
+ * 
+ * @param
+ * @returns
+ */
   onSubmit() {
-    // console.log(this.infoForm.value);
-    // return;
     this.isSubmitted = true;
     if (!this.infoForm.valid) return;
     this._hs.loader.next(true);
@@ -141,7 +189,12 @@ export class InfoComponent implements OnInit {
     );
   }
 
-
-  //return form controls
+/**
+ * @author swarup bhol
+ * 
+ * @getting form instance
+ * @param
+ * @returns
+ */
   get f() { return this.infoForm.controls; }
 }
