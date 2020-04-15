@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material';
-import { EditProfileComponent } from './edit-profile.component';
+
 
 @Component({
   selector: 'app-edit-profile-photo',
