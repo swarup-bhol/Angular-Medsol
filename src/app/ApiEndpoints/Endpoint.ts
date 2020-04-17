@@ -1,6 +1,3 @@
-import { Constant } from './Constants'
-
-export const Endpoint={
-    baseUri:"http://medsolapi.me/api/"
+export class Endpoint{
+    public static API_ENDPOINT='http://localhost:8080/api/';
 }
-

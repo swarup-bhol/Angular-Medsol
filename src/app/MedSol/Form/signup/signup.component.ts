@@ -5,8 +5,9 @@ import { APIsService } from 'src/app/Services/apis.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { HeaderService } from 'src/app/Services/header.service';
-import {Url} from "src/app/Utils/Utils"
-import { from } from 'rxjs';
+import { Endpoint } from './../../../ApiEndpoints/Endpoint';
+import { ExtendedEndpoint } from './../../../ApiEndpoints/ExtendedEndPoint';
+
 
 
 
@@ -28,17 +29,31 @@ export class SignupComponent implements OnInit {
   signupForm: FormGroup;
   isSubmitted = false;
 
-
-  // Instantiate Object
+/**
+ * @author swarup bhol
+ * 
+ * 
+ * 
+ * @param _fb 
+ * @param _apiService 
+ * @param _ts 
+ * @param _router 
+ * @param _hs 
+ */
   constructor(
     private _fb: FormBuilder,
     private _apiService: APIsService,
     private _ts: ToastrService,
     private _router: Router,
-    private _hs: HeaderService,
+    private _hs: HeaderService
   ) { }
 
-  // Instantiating form
+  /**
+   * @author swarup bhol
+   * 
+   * @param
+   * @returns
+   */
   ngOnInit() {
     this.signupForm = this._fb.group({
       name: ['', Validators.required],
@@ -49,18 +64,23 @@ export class SignupComponent implements OnInit {
   }
 
  
-   // Creating User 
+  /**
+   * @author swarup bhol
+   * 
+   * @public create the user
+   * @param
+   * @returns
+   */
   createUser(){
     this.isSubmitted = true;
-    console.log("xyz");
     if(!this.signupForm.valid) return;
     this._hs.loader.next(true);
-    console.log(this.signupForm.value);
-    this._apiService.postRequest(Url.userRegister, this.signupForm.value).subscribe(
+    // Making Post request
+    this._apiService.postRequest(Endpoint.API_ENDPOINT+ExtendedEndpoint.REGISTER, this.signupForm.value).subscribe(
       success=>{ // Success
         if(success.status == 200){
           this._hs.loader.next(false);
-          this._router.navigate(['/login/info', success.result.email]);
+          this._router.navigate(['/login/info', success.result.userEmail]);
         }else if(success.status == 409) {
           this._hs.loader.next(false);
           this._ts.error("User Already exist");
@@ -77,6 +97,13 @@ export class SignupComponent implements OnInit {
       }
     );
   }
-  //Form returning form controls
+  // Form returning form controls
+
+  /**
+   * @author swarup bhol
+   * 
+   * @param
+   * @returns
+   */
   get f() { return this.signupForm.controls; }
 }
