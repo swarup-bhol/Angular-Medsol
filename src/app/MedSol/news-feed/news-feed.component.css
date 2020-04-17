@@ -162,6 +162,8 @@ span{
     border-radius: 30px;
 }
 
+
+
 @media only screen and (max-width:420px) {
     .example-card{
         width: 300%;   

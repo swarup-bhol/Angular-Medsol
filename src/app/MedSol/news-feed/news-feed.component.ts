@@ -6,6 +6,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ProfileService } from 'src/app/Services/profile.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { PostsComponent } from '../posts/posts.component';
+import { Endpoint } from 'src/app/ApiEndpoints/Endpoint';
 
 @Component({
   selector: 'app-news-feed',
@@ -13,8 +14,6 @@ import { PostsComponent } from '../posts/posts.component';
   styleUrls: ['./news-feed.component.css']
 })
 export class NewsFeedComponent implements OnInit {
-  private followUser = "http://localhost:8080/api/user/peoples/";
-  private profileUrl = ""
   userId= localStorage.getItem('id')
   peopleList:[];
   profileDetails: any;
@@ -42,7 +41,7 @@ export class NewsFeedComponent implements OnInit {
 
   // Get suggested people list
   getSuggetionPeopleList(){
-    this._as.getRequest(this.followUser + "0/6").subscribe(
+    this._as.getRequest(Endpoint.API_ENDPOINT+'user/'+this.userId+'/peoples/0/6').subscribe(
       (response) => {
         if(response.status == 200) this.peopleList = response.result;
       },

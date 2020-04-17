@@ -4,6 +4,8 @@ import { APIsService } from 'src/app/Services/apis.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { HeaderService } from 'src/app/Services/header.service';
+import { Endpoint } from './../../../ApiEndpoints/Endpoint';
+import { ExtendedEndpoint } from './../../../ApiEndpoints/ExtendedEndPoint';
 
 
 
@@ -15,9 +17,16 @@ import { HeaderService } from 'src/app/Services/header.service';
 })
 export class LoginComponent implements OnInit {
   durationInSeconds = 5;
-  private _url = "http://localhost:8080/api/medsol/v1/login";
-  // isSubmited = false;
-  // Constructor
+
+  /**
+   * @author Swarup Bhol
+   * 
+   * @purpose instantiate the objecy
+   * @param _apiservice 
+   * @param router 
+   * @param _ts 
+   * @param _hs 
+   */
   constructor(
     private _apiservice: APIsService,
     private router: Router,
@@ -25,7 +34,11 @@ export class LoginComponent implements OnInit {
     private _hs: HeaderService
   ) { }
 
-  // Form controls
+  /**
+   * @author Swarup Bhol
+   * 
+   * @purpose Assign the form object
+   */
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required])
@@ -35,12 +48,19 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
 
   }
-  // Submit the Form
+
+  /**
+   * @author Swarup Bhol
+   * 
+   * @purpose login the user
+   * @param
+   * @returns
+   */
   loginUser() {
     // this.isSubmited = true;
     if (!this.loginForm.valid) return;
     this._hs.loader.next(true);
-    this._apiservice.postRequest(this._url, this.loginForm.value).subscribe(
+    this._apiservice.postRequest(Endpoint.API_ENDPOINT+ExtendedEndpoint.LOGIN, this.loginForm.value).subscribe(
       data => {
         if (data.status == 200) { 
           localStorage.setItem('token', data.result.token); 

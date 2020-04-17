@@ -1,24 +1,170 @@
-.mat-elevation-z8 {
-    height: 500px;
-    width: 80%;
+.edit-profile-outer-div{
+    display: flex;
+    flex-basis: 70%;
+    min-height: 549px;
+    margin-top: 6%;
+}
+
+.side-profile-div{
+    display: flex;
+    flex-basis: 25%;
+    flex-direction: column;
+    border-right: 1px solid rgb(149, 148, 141);
+}
+
+.outer-div{
+   display: flex;
+   justify-content: center;
+   
+}
+
+
+
+.side-profile-div > div.active{
+    border-left: 1px solid  black;
+    color: black;
+}
+
+.side-profile-div > div{
+    height: 50px;
+    font-style: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 18px;
+    cursor: pointer;
+    color: #4b5661;
+    padding: 10% 10% 10% 18%;
+}
+
+.side-tab-pane{
+    display: none;
+}
+
+.side-tab-pane.active{
+    display: flex;
+    flex-direction: column;
+    padding-top:4%;
+    padding-left: 6%;
+    padding-right: 7%;
+}
+
+.profile-heading{
+    display: flex;
+    flex-direction: row;
+}
+
+.profile-img{
+    flex:30%;
+    text-align: right;
+}
+
+.profile-img img{
+    height: 40px;
+    width: 40px;
+    border-radius: 40px;
+}
+
+
+
+.main-profile-div{
+    flex:75%;
+    max-width: 75%;
+}
+
+.profile-details{
+    display: flex;
+    width: 100;
+    flex-direction: column;
+
+}
+
+.profile-details label{
+    font-size: 18px;
+}
+
+.profile-name > a{
+    color:#007bff ;
+    cursor: pointer;
+}
+
+.profile-name{
+    display: flex;
+    flex:60%;
+    flex-direction: column;
+    margin-left: 11%;
+}
+
+
+
+.formcontrol-div{
+    display: flex;
+    margin-bottom: 30px;
+}
+
+
+.formcontrol-div label{
+    flex:30%;
+    max-width: 30%;
+    font-size: 16px;
+    text-align: right;
+}
+
+.formcontrol-div label{
+    margin-left: 6%;
+}
+
+
+
+
+
+.input-controller{
+    display: flex;
+    flex-basis:70%;
+    flex-direction: column;
     margin-left: 10%;
-    border-top: 1px solid #fbfbfb;;
+    padding-right: 15%;
 }
 
-.mat-form {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
+.formcontrol-div button{
+    margin-left:5%;
 }
 
-.mat-full-width {
-    width: 60%;
+@media only screen and (max-width:420px){
+    .side-profile-div{
+        display: none;
+    }
+
+    .main-profile-div{
+        flex-basis: 100%;
+        width: 100%;
+    }
+
+    .edit-profile-outer-div{
+        margin-top: 22%;
+        flex-basis: 100%;
+        width: 100%;
+    }
+
+    .formcontrol-div label{
+        flex:30%;
+        max-width: 30%;
+        font-size: 10px;
+        text-align: right;
+    }
+
+    .formcontrol-div{
+        display: flex;
+        margin-bottom: 20px;
+    }
+    
+    .form-control{
+        height: 25px;
+    }
+
+    .input-controller{
+        padding-right: 0%;
+    }
+
+    .formcontrol-div button {
+        height: 35px;
+    }
 }
-.editForm{
-    margin-left: 33%;
-    margin-top: 10%;
-}
-.btn{
-    width: 55%;
-    float: right;
-}
+

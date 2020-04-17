@@ -1,0 +1,24 @@
+.edit-profile-outer-div div{
+    border-bottom:1px solid #ddd4d4;
+    padding:10px 30px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.edit-profile-outer-div{
+    width: 400px;
+    border-radius: 100px;
+}
+
+.upload-profile-div a{
+    color: #007bff;
+}
+
+.remove-profile-div a{
+    color: #ed4956;
+}
+
+.edit-profile-outer-div > div > a{
+    cursor: pointer;
+}
+

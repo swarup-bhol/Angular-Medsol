@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroupDirective, NgForm, Validators, FormBuilder} from '@angular/forms';
-import {ErrorStateMatcher} from '@angular/material/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { FormControl, FormGroupDirective, Validators, FormBuilder, FormGroup, NgForm } from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
 import { HeaderService } from '../../Services/header.service';
+import { element } from 'protractor';
+import { MatDialog, } from '@angular/material';
+import { EditProfilePhotoComponent } from './edit-profile-photo/edit-profile-photo.component';
+import { Endpoint } from 'src/app/ApiEndpoints/Endpoint';
+import { ExtendedEndpoint } from 'src/app/ApiEndpoints/ExtendedEndPoint';
+import { APIsService } from 'src/app/Services/apis.service';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
-/** Error when invalid control is dirty, touched, or submitted. */
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
+
 
 @Component({
   selector: 'app-edit-profile',
@@ -20,21 +22,94 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 
 
 export class EditProfileComponent implements OnInit {
-  editForm: any;
-
+  isSubmitted = true;
+  editForm: FormGroup;
+  userId: string;
+  profileData: any;
   constructor(
     private _fb: FormBuilder,
-    private _hs: HeaderService
-    ) { }
-  matcher = new MyErrorStateMatcher();
+    private _hs: HeaderService,
+    private _dialog: MatDialog,
+    private _as: APIsService,
+    private _ts:ToastrService,
+    private _router: Router
+  ) {
+  }
   ngOnInit(): void {
+    this.userId = localStorage.getItem('id');
     this._hs.header.next(true);
-    this.editForm = this._fb.group({
-      name:['',[Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
-      mobile:['',[Validators.required, Validators.minLength(10),Validators.maxLength(10)]]
+    this.editForm = new FormGroup({
+      fullName: new FormControl('', Validators.required),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      profession: new FormControl('', Validators.required),
+      MobileNo: new FormControl('', [Validators.required, Validators.minLength(10)]),
+      Institue: new FormControl('', Validators.required)
+    });
+    this.getProfileUserProfileDetails();
+  }
 
+  onSideTabChange(selectedTab: string) {
+    var tabPane = document.querySelectorAll(".side-tab-pane");
+    tabPane.forEach(function (element) {
+      if (element.classList.contains("active")) {
+        element.classList.remove("active");
+      }
+    })
+
+    var tabPane = document.querySelectorAll(".side-tab");
+    tabPane.forEach(function (element) {
+      if (element.classList.contains("active")) {
+        element.classList.remove("active");
+      }
+    })
+    if (selectedTab == "profile-details") {
+      var tabPane = document.querySelectorAll(".profileDetails");
+      tabPane.forEach(function (element) {
+        element.classList.add("active");
+      })
+    }
+    else {
+      var tabPane = document.querySelectorAll(".changePassword");
+      tabPane.forEach(function (element) {
+        element.classList.add("active");
+      })
+    }
+  }
+
+  onEditFomSubmit() {
+
+  }
+
+  changeProfileOpen() {
+    const dialogRef = this._dialog.open(EditProfilePhotoComponent, {
+      panelClass: 'app-full-bleed-dialog',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
     });
   }
 
+  get f() { return this.editForm.controls; }
+
+  getProfileUserProfileDetails() {
+    this._as.getRequest(Endpoint.API_ENDPOINT + 'medsol/v1/profile/' + this.userId).subscribe(
+      data => {
+        if (data.status == 200) {
+          console.log(data)
+          this.profileData = data.result;
+          this.setFields(this.profileData);
+        }
+      }, error => {
+        if (error.status == 401 || error.status == 400) {
+          this._ts.error('token expire please login to proceed');
+          this._router.navigate(['/login']);
+        }
+        console.log(error)
+      }
+    );
+  }
+  setFields(profileData){
+    this.editForm.controls.fullName = profileData.user.fullName;
+    console.log(profileData)
+  }
 }

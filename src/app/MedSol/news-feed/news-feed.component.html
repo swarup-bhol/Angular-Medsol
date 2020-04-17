@@ -8,7 +8,7 @@
                 <mat-card class="flex outer-profile-div" style="margin-bottom: 1.5%;">
                     <div class="profilePic">
                         <div class="img" [routerLink]="['/profile',userId]">
-                            <img src="./.././assets/image.jpg" height="50px" width="50px"></div>
+                            <img src="http://localhost:8080/api/medsol/v1/profilePic/{{userId}}" height="50px" width="50px"></div>
                     </div>
                     <div class="mycenter" (click)="openModal()">
                         <input mat-input type="text" placeholder="Write Something Here ..">
@@ -46,6 +46,15 @@
                             <div *ngFor="let item of commentList">
                                 <span >{{item.Name}}</span><span>{{item.Comment}}</span>
                             </div>
+                            <div *ngFor="let item of commentList">
+                                <span >{{item.Name}}</span><span>{{item.Comment}}</span>
+                            </div>
+                            <div *ngFor="let item of commentList">
+                                <span >{{item.Name}}</span><span>{{item.Comment}}</span>
+                            </div>
+                            <div *ngFor="let item of commentList">
+                                <span >{{item.Name}}</span><span>{{item.Comment}}</span>
+                            </div>
                         </div>
                         <div>
                             <div class="newComment">
@@ -59,17 +68,17 @@
                 
             </div>
             <div class="peopleList">
-                <div class="header"><b>Suggetions For you ..</b> <a href="#" style="float: right;">See All</a></div>
+                <div class="header"><b>Suggetions For you ..</b> <a [routerLink]="['/peoples','suggetions',0]" style="float: right;">See All</a></div>
                 <div class="people" *ngFor="let people of peopleList">
                     <mat-card class="flex">
                         <div class="profilePic">
                             <div class="img" [routerLink]="['/profile',people.userId]">
-                                <img src="http://localhost:8080/api/medsol/profile/pic/{{people.profileId}}" height="50px" width="50px">
+                                <img src="http://localhost:8080/api/medsol/v1/profilePic/{{people.userId}}" height="50px" width="50px">
                             </div>
                         </div>
                         <div class="name">
-                            <div class="people-name" [routerLink]="['/profile',people.userId]">{{people.name}}</div>
-                            <span>{{people.grade}},{{people.institute}}</span>
+                            <div class="people-name" [routerLink]="['/profile',people.userId]">{{people.fullName}}</div>
+                            <span>{{people.grade}},{{people.instituteName}}</span>
                         </div>
                         <div class="btn"><button mat-raised-button color="primary"
                                 style="margin-top: 1.5%;" (click)=follow(people.userId)>Follow</button></div>

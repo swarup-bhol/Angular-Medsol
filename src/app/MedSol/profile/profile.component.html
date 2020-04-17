@@ -1,22 +1,19 @@
-<div class="profile">
-    <div class="mainform">
+<div class="initial-profile-div">
+    <div class="profile-details-div">
         <div class="row">
-            <div class="profilePic">
-                <div class="img" *ngIf="currentUser != userId">
-                    <img src="http://localhost:8080/api/medsol/profile/pic/{{profileData?.profile.id}}">
+            <div class="profile-pic-div">
+                <div class="profile-pic-inner-div" *ngIf="currentUser != userId">
+                    <img src="./.././assets/image.jpg">
                 </div>
                 <input style="display: none" type="file" (change)="onFileChanged($event)" #fileInput>
-                <div class="img" id="navi" *ngIf="currentUser == userId" (click)="fileInput.click()"
+                <div class="profile-pic-inner-div" id="navi" *ngIf="currentUser == userId" (click)="fileInput.click()"
                     style="cursor: pointer;" data-toggle="tooltip" title="Upload ProfilePic">
-                    <img src="http://localhost:8080/api/medsol/profile/pic/{{profileData?.profile.id}}">
-                    <!-- <div class="spinner-grow text-primary" role="status" id="infoi">
-                        <span class="sr-only">Loading...</span>
-                      </div> -->
+                    <img src="./.././assets/image.jpg">
                 </div>
             </div>
-            <div class="details">
+            <div class="profile-desc-div">
                 <div>
-                    <h1><b>{{profileData?.userName}}</b></h1>
+                    <h1><b>{{profileData?.user?.fullName}}</b></h1>
                     <button mat-stroked-button routerLink="/edit-profile" *ngIf="currentUser == userId">Edit
                         Profile</button>
                     <button mat-raised-button (click)="followUser()" *ngIf="currentUser != userId && !following"
@@ -24,103 +21,108 @@
                     <button mat-stroked-button (click)="unFollowUser()"
                         *ngIf="currentUser != userId && following">Following</button>
                     <div class="row" id="follow">
-                        <div class="follow1 "><b>{{profileData?.post}} posts</b></div>
-                        <div class="follow2 "><b>{{profileData?.follower}} followers</b></div>
-                        <div class="follow3 "><b>{{profileData?.following}} following</b></div>
+                        <div class="post-count-div"><b>{{profileData?.postCount}} posts</b></div>
+                        <div class="follower-count-div" [routerLink]="['/peoples','followers',profileData?.user?.userId]">
+                            <b>{{profileData?.followingCount}} followers</b></div>
+                        <div class="following-count-div" [routerLink]="['/peoples','followings',profileData?.user?.userId]">
+                            <b>{{profileData?.followerCount}} following</b></div>
                     </div>
                 </div>
                 <div></div>
                 <div style="margin-top: 2%; ">
-                    <div>#{{profileData?.userName}}</div>
-                    <div>#{{profileData?.profile.profession}}</div>
-                    <div>#{{profileData?.profile.institute}}</div>
-                    <div>#{{profileData?.profile.specialization}}</div>
-                    <div>#{{profileData?.profile.subSpecialization}}</div>
+                    <div>#{{profileData?.user?.fullName}}</div>
+                    <div>#{{profileData?.profession}}</div>
+                    <div>#{{profileData?.user.instituteName}}</div>
+                    <div>#{{profileData?.specialization}}</div>
+                    <div>#{{profileData?.detailsSpecialization}}</div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="posts">
+    <div class="initial-post-div">
         <div style="margin-bottom: 2%; padding: 10px;" *ngFor="let post of PostList">
-            <mat-card class="example-card">
+            <mat-card class="mat-post-card">
 
                 <div class="row">
-                    <div class="col-7 postContent">
-                        <div class="postHeader">
+                    <div class="col-7 post-content-div">
+                        <div class="post-content-header">
                             <mat-card-header>
                                 <div mat-card-avatar class="header-image">
-                                    <img src="http://localhost:8080/api/medsol/profile/pic/{{profileData?.profile.id}}"
+                                    <img src="./.././assets/image.jpg"
                                         height="50px" width="50px">
                                 </div>
                                 <mat-card-title>{{profileData?.userName}}</mat-card-title>
-                                <mat-card-subtitle>{{profileData?.profile.profession}} |
-                                    {{post.uploadedTime | date:'dd/MM/yyyy'}}:{{post.uploadedTime | date:"HH:mm"}}
+                                <mat-card-subtitle>{{profileData?.profession}} |
+                                    {{post.postUploadTime | date:'dd/MM/yyyy'}}:{{post.postUploadTime | date:"HH:mm"}}
                                 </mat-card-subtitle>
+                                <span  class="dot-edit"><a (click)="editPost(post.postId)">...</a></span>
+                                <div class="triangle" *ngIf="isEditPost && post.postId == postId "></div>                           
+                                    <div class="edit-comment-inner" *ngIf="isEditPost && post.postId == postId ">
+                                        <ul>
+                                            <li>
+                                                <a >Edit</a>
+                                            </li>
+                                            <li>
+                                                <a>Delete</a>
+                                            </li>
+                                        </ul>
+                                    </div>
                             </mat-card-header>
                         </div>
-                        <div class="content" style="margin-top: auto;">
+                        <div class="content-div">
                             <mat-card-content>
                                 <p>
-                                    {{post.content}}
+                                    {{post.postContent}}
                                 </p>
                             </mat-card-content>
                         </div>
 
-                        <div *ngIf="(post.imgPath | json) != 'null'"> 
-                            <img  src="http://localhost:8080/api/medsol/posts/img/206" alt="Post" height="243px" width="550px">
+                        <div *ngIf="(post.imgPath | json) != 'null'">
+                            <img src="./.././assets/image.jpg" alt="Post" height="243px">
                         </div>
                     </div>
                     <div class="col-5" style="overflow: hidden;">
 
-                        <div class="comments">
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
+                        <div class="post-cmt-div">
+                            <div #xyz class="cmnt-div" *ngFor="let item of commentList"><span><strong>{{item.userName}} </strong> {{item.commentText}}</span>
+                                <span  class="dot-edit"><a  (click)="editComment(item.commentId)"  >...</a></span>
+                                <div class="triangle" *ngIf="isEditComment && item.commentId == commentId"></div>
+                                <div class="edit-comment-outer" >
+                                    <div class="edit-comment-inner" *ngIf="isEditComment && item.commentId == commentId" >
+                                        <ul>
+                                            <li>
+                                                <a (click)="onEditComment(item.commentId)">Edit</a>
+                                            </li>
+                                            <li>
+                                                <a>Delete</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
 
+                            <div><strong>Swarup Bhol</strong>  : Nice Pic </div>
                         </div>
 
-                        <div class="reactions">
-                            <div class="like" style="margin-bottom: 1.5%;">
+                        <div class="post-react-div">
+                            <div class="post-like-div" style="margin-bottom: 1.5%;">
                                 Liked By Swarup Bhol,Abhidutta Baral and <strong>49 others</strong>
                             </div>
-                            <div class="row" style="margin-top: auto;">
-                                <div class="col-4" style="text-align: center; "><i
-                                        class="fa fa-thumbs-up">Like</i></div>
-                                <div class="col-4" style="text-align: center; "><i
-                                        class="fa fa-comment-o">Comment</i></div>
-                                <div class="col-4" style="text-align: center;"><i
-                                        class="fa fa-send-o">Share</i></div>
-                            </div>
+                                <mat-card-actions>
+                                    <button mat-button style="width: 30.33%; color: blue;"><i class="fa fa-thumbs-up"></i>Like</button>
+                                    <button mat-button style="width: 30.33%;" (click)="clickComment()"><i class="fa fa-comment-o">Comment</i></button>
+                                    <button mat-button style="width: 30.33%;"><i class="fa fa-send-o">Share</i></button>
+                                </mat-card-actions>
 
                         </div>
-                        <div class="row newComment">
-                            <div class="col-8 comnt"><input mat-input type="text" placeholder="Write a comment here..">
+                        <div class="row post-new-comment">
+                            <div class="col-8 post-cmt-inp-div"><input mat-input type="text" placeholder="Write a comment here..">
                             </div>
-                            <div class="cmtBtn">Post</div>
+                            <div class="cmt-btn-div">Post</div>
                         </div>
                     </div>
                 </div>
             </mat-card>
         </div>
-
     </div>
 </div>
