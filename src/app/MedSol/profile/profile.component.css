@@ -95,12 +95,10 @@ button {
 
 .header-image img {
     border-radius: 100px;
-    position: relative;
     -webkit-border-radius: 100px;
     -moz-border-radius: 100px;
     cursor: pointer;
     outline-style: none;
-    position: relative;
     background-size: cover;
 }
 
@@ -117,7 +115,7 @@ button {
 }
 
 .post-content-header {
-    position: static;
+    position: relative;
     width: 100%;
     z-index: 3;
 }
@@ -131,7 +129,9 @@ button {
 .post-cmt-div {
     height: 300px;
     overflow: auto;
-    scrollbar-width: 0px;
+    position: relative;
+    padding: 3%;
+    scrollbar-width:none;
     background-color: #fbfbfb;
 }
 .post-new-comment {
@@ -155,4 +155,92 @@ button {
 }
 .post-react-div {
     margin-top: 2%;
+}
+
+.cmnt-div{
+    position: relative;
+}
+
+.cmnt-div span > a{
+    cursor: pointer;
+}
+
+.cmnt-div span:nth-child(2){
+ margin-left: 200px;
+}
+
+.edit-comment-outer{
+    position: relative;
+}
+
+.edit-comment-inner{
+    position: absolute;
+    background-color: #FFF;
+    right: 0;
+    top: 5px;
+    z-index: 9;
+    border: 1px solid #ffffff;
+    width: 80px;
+    height: 55px;
+}
+
+.edit-comment-inner ul li{
+    list-style-type: none;
+    padding-left: 3px;
+    padding-top:7px;
+}
+
+.edit-comment-inner ul li a{
+   cursor: pointer;
+}
+
+.edit-comment-inner ul li:hover{
+   background-color: #d8c9c9;
+}
+
+.edit-comment-inner ul{
+    padding-left: unset;
+}
+
+.triangle{
+    background: #fff;
+    content: ' ';
+    height: 10px;
+    margin: auto;
+    position: absolute;
+    right: 0;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    width: 10px;
+    z-index: 9;
+    border: 1px solid  #ffffff;
+
+}
+
+.cmnt-div .triangle{
+    right: 3%;
+    top:20px
+}
+
+.dot-edit{
+    position: absolute;
+    right: 1%;
+}
+
+.post-content-header .edit-comment-inner{
+    top: 24px;
+    background-color: #fbfbfb;
+    border:1px solid #fbfbfb;
+
+}
+
+.post-content-header .triangle{
+    top:18px;
+    right: 2%;
+    background-color: #fbfbfb;
+    border:1px solid #fbfbfb;
+}
+
+.dot-edit > a{
+    cursor: pointer;
 }

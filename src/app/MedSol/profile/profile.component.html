@@ -3,12 +3,12 @@
         <div class="row">
             <div class="profile-pic-div">
                 <div class="profile-pic-inner-div" *ngIf="currentUser != userId">
-                    <img src="http://localhost:8080/api/medsol/v1/profilePic/{{profileData?.user.userId}}">
+                    <img src="./.././assets/image.jpg">
                 </div>
                 <input style="display: none" type="file" (change)="onFileChanged($event)" #fileInput>
                 <div class="profile-pic-inner-div" id="navi" *ngIf="currentUser == userId" (click)="fileInput.click()"
                     style="cursor: pointer;" data-toggle="tooltip" title="Upload ProfilePic">
-                    <img src="http://localhost:8080/api/medsol/v1/profilePic/{{profileData?.user.userId}}">
+                    <img src="./.././assets/image.jpg">
                 </div>
             </div>
             <div class="profile-desc-div">
@@ -48,13 +48,25 @@
                         <div class="post-content-header">
                             <mat-card-header>
                                 <div mat-card-avatar class="header-image">
-                                    <img src="http://localhost:8080/api/medsol/profile/pic/{{profileData?.profile.id}}"
+                                    <img src="./.././assets/image.jpg"
                                         height="50px" width="50px">
                                 </div>
                                 <mat-card-title>{{profileData?.userName}}</mat-card-title>
-                                <mat-card-subtitle>{{profileData?.profile.profession}} |
+                                <mat-card-subtitle>{{profileData?.profession}} |
                                     {{post.uploadedTime | date:'dd/MM/yyyy'}}:{{post.uploadedTime | date:"HH:mm"}}
                                 </mat-card-subtitle>
+                                <span  class="dot-edit"><a (click)="editPost(post.postId)">...</a></span>
+                                <div class="triangle" *ngIf="isEditPost && post.postId == postId "></div>                           
+                                    <div class="edit-comment-inner" *ngIf="isEditPost && post.postId == postId ">
+                                        <ul>
+                                            <li>
+                                                <a >Edit</a>
+                                            </li>
+                                            <li>
+                                                <a>Delete</a>
+                                            </li>
+                                        </ul>
+                                    </div>
                             </mat-card-header>
                         </div>
                         <div class="content-div">
@@ -66,35 +78,29 @@
                         </div>
 
                         <div *ngIf="(post.imgPath | json) != 'null'">
-                            <img src="http://localhost:8080/api/medsol/posts/img/206" alt="Post" height="243px"
+                            <img src="./.././assets/image.jpg" alt="Post" height="243px"
                                 width="550px">
                         </div>
                     </div>
                     <div class="col-5" style="overflow: hidden;">
 
                         <div class="post-cmt-div">
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
-                            <div><strong>Swarup Bhol </strong> Nice Pic ..</div>
+                            <div #xyz class="cmnt-div" *ngFor="let item of commentList"><span><strong>{{item.userName}} </strong> {{item.commentText}}</span>
+                                <span  class="dot-edit"><a  (click)="editComment(item.commentId)"  >...</a></span>
+                                <div class="triangle" *ngIf="isEditComment && item.commentId == commentId"></div>
+                                <div class="edit-comment-outer" >
+                                    <div class="edit-comment-inner" *ngIf="isEditComment && item.commentId == commentId" >
+                                        <ul>
+                                            <li>
+                                                <a (click)="onEditComment(item.commentId)">Edit</a>
+                                            </li>
+                                            <li>
+                                                <a>Delete</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
 
                         </div>
 
