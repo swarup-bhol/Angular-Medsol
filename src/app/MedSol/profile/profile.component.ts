@@ -243,4 +243,7 @@ export class ProfileComponent implements OnInit, AfterViewChecked {
     this.postId = value;
 
   }
+  clickComment(){
+    
+  }
 }

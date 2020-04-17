@@ -88,7 +88,8 @@ button {
 
 .mat-post-card {
     max-width: 87%;
-    height: 415px;
+    /* height: 415px; */
+    
 }
 
 
@@ -135,7 +136,7 @@ button {
     background-color: #fbfbfb;
 }
 .post-new-comment {
-    border-top: 0.25px solid silver;
+    /* border-top: 0.25px solid silver; */
     margin-left: 1%;
     height: 35px;
     margin-top: auto;
